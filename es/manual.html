@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Manual de Método · María Agustina Sanguinetti Flores</title>
+<meta name="description" content="Manual de Método: criterio de decisión y sistema de 12 agentes especializados ejecutados con IA bajo human-in-the-loop. Autoría: María Agustina Sanguinetti Flores.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  html{scroll-behavior:smooth;scroll-padding-top:calc(88px + env(safe-area-inset-top,0px));}
+  body{font-family:'Inter',sans-serif;background:#09090b;color:#f4f4f5;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .glow{position:absolute;top:0;right:0;width:12rem;height:12rem;border-radius:9999px;filter:blur(64px);pointer-events:none;}
+  table{width:100%;border-collapse:collapse;}
+  th,td{text-align:left;padding:.65rem .9rem;border-bottom:1px solid rgba(63,63,70,.5);vertical-align:top;}
+  th{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#a1a1aa;background:rgba(24,24,27,.6);}
+  tr:hover td{background:rgba(39,39,42,.3);}
+  .tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;background:rgba(9,9,11,.6);border:1px solid rgba(39,39,42,.8);color:#a5b4fc;padding:.25rem .6rem;border-radius:.4rem;display:inline-block;}
+  .card{background:rgba(24,24,27,.3);border:1px solid rgba(39,39,42,.8);border-radius:1.5rem;padding:1.75rem;transition:border-color .15s;position:relative;overflow:hidden;}
+  .card:hover{border-color:#3f3f46;}
+</style>
+</head>
+<body class="text-zinc-100">
+
+<nav class="sticky top-0 z-50 backdrop-blur-md bg-zinc-950/80 border-b border-zinc-800/80">
+  <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between text-xs mono text-zinc-400 overflow-x-auto whitespace-nowrap gap-6">
+    <span class="text-zinc-100 font-medium">MAS[F] // Manual de Método</span>
+    <a href="/en/manual.en.html" aria-label="Switch to English" class="hover:text-indigo-400">EN</a>
+    <div class="flex gap-5">
+      <a href="#vision" class="hover:text-indigo-400">Fundamentos</a>
+      <a href="#sistema" class="hover:text-indigo-400">Sistema</a>
+      <a href="#agentes" class="hover:text-indigo-400">Agentes</a>
+      <a href="#artefactos" class="hover:text-indigo-400">Artefactos</a>
+      <a href="#referencia" class="hover:text-indigo-400">Referencia</a>
+      <a href="/es/" class="hover:text-indigo-400">← Volver al portafolio</a>
+      <a href="/es/certificaciones.html" class="hover:text-indigo-400">Formación</a>
+    </div>
+  </div>
+</nav>
+
+<header class="max-w-5xl mx-auto px-6 pt-16 pb-14">
+  <p class="tag mb-6">// Manual de Método</p>
+  <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">María Agustina Sanguinetti Flores</h1>
+  <p class="text-zinc-400 mt-4 text-lg max-w-2xl">Criterio de decisión y sistema de 12 agentes especializados — hoy ejecutado con IA.</p>
+  <div class="flex flex-wrap gap-2 mt-6">
+    <span class="tag">Professional Knowledge Base propia</span>
+    <span class="tag">Orquestación por código · Google AI Studio</span>
+    <span class="tag">Estándares internacionales de gestión de proyectos</span>
+    <span class="tag">12 agentes</span>
+  </div>
+
+  <div class="mt-8 rounded-xl border border-purple-500/40 bg-purple-600/10 px-6 py-4 text-sm text-purple-200">
+    🔒 <strong>Human-in-the-loop como principio central:</strong> ninguna acción irreversible se ejecuta ni se promete un resultado sin aprobación humana explícita. Este documento describe un método de asistencia a la decisión — no un sistema autónomo.
+  </div>
+  <p class="text-sm text-zinc-400 mt-4">Alcance de este documento: describe el método y su implementación actual en mi propio despliegue. El producto que Nextgenflow entrega a sus clientes es independiente del proveedor de IA: cada organización configura el modelo que usa cada agente.</p>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+    <div class="card"><p class="text-3xl font-bold text-indigo-400">12</p><p class="text-xs text-zinc-500 mt-1">Agentes especializados</p></div>
+    <div class="card"><p class="text-3xl font-bold text-indigo-400">6</p><p class="text-xs text-zinc-500 mt-1">Etapas del pipeline</p></div>
+    <div class="card"><p class="text-3xl font-bold text-indigo-400">8</p><p class="text-xs text-zinc-500 mt-1">Artefactos operativos</p></div>
+    <div class="card"><p class="text-3xl font-bold text-indigo-400">1</p><p class="text-xs text-zinc-500 mt-1">Metodología propia</p></div>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-6 space-y-20 pb-24">
+
+<section id="vision">
+  <h2 class="text-2xl font-bold mb-6">01 · Quién soy y cómo pienso</h2>
+  <div class="card space-y-4 text-zinc-300 leading-relaxed">
+    <p>Mi forma de trabajar no nace de una herramienta ni de un experimento con IA: es la expresión operativa de una metodología documentada de forma sistemática en una <strong class="text-zinc-100">Professional Knowledge Base</strong> propia, construida como fuente única de verdad sobre mi identidad profesional.</p>
+    <p class="italic text-zinc-400">"No pretende contar mi historia, sino documentar cómo pienso, cómo trabajo y qué evidencia sostiene esa forma de trabajar."</p>
+    <p>La base distingue tres niveles de conocimiento: <strong class="text-zinc-100">hechos</strong> (información verificable), <strong class="text-zinc-100">patrones</strong> (conclusiones observadas repetidamente) e <strong class="text-zinc-100">hipótesis</strong> (ideas plausibles que requieren validación). Este principio — no confundir certeza con inferencia — es el que estructura las prohibiciones y niveles de confianza de cada agente.</p>
+    <ul class="grid md:grid-cols-2 gap-2 text-sm text-zinc-400 pt-2">
+      <li class="tag !text-zinc-300">La identidad precede al cargo</li>
+      <li class="tag !text-zinc-300">La evidencia precede a la narrativa</li>
+      <li class="tag !text-zinc-300">Comprender precede a intervenir</li>
+      <li class="tag !text-zinc-300">Cada idea existe una sola vez</li>
+    </ul>
+    <p>La IA se incorpora como un habilitador que amplifica capacidad analítica y de gestión — no como un cambio de disciplina.</p>
+  </div>
+</section>
+
+<section id="metodologia">
+  <h2 class="text-2xl font-bold mb-6">02 · Mi método de trabajo</h2>
+  <div class="card space-y-4 text-zinc-300 leading-relaxed">
+    <p>Organizo el trabajo en agentes con un territorio claro y prohibiciones explícitas para no invadir el rol de los otros. No es un chatbot avanzado: es una arquitectura de trabajo profesional donde cada agente representa una perspectiva distinta sobre el mismo problema.</p>
+    <p><strong class="text-zinc-100">Principio rector:</strong> antes de proponer, entender. Ningún agente propone soluciones antes de comprender el contexto. Todos declaran nivel de confianza, marcan supuestos y se niegan a responder cuando falta información mínima.</p>
+    <p><strong class="text-zinc-100">Regla fundamental:</strong> todo output es tentativo hasta que exista un diagnóstico completo con el cliente o stakeholder real.</p>
+  </div>
+</section>
+
+<section id="sistema">
+  <h2 class="text-2xl font-bold mb-6">03 · Cómo funciona a nivel sistémico</h2>
+  <p class="text-zinc-400 mb-6 text-sm">El pipeline corre en 6 etapas encadenadas, hoy implementadas por código (TypeScript + Express), con dos formas de disparo: pipeline completo o por olas de concurrencia.</p>
+  <div class="space-y-3">
+    <div class="card !py-4"><span class="tag mr-3">Etapa 0</span><strong>Ingesta y Radiografía</strong><p class="text-sm text-zinc-400 mt-1">Recibe texto, audio, PDF o imágenes → produce la matriz de 39 celdas y el semáforo de calidad.</p></div>
+    <div class="card !py-4 border-indigo-500/30"><span class="tag mr-3">Ola 1 · Paralelo</span><strong>PM + UX + Innovation</strong><p class="text-sm text-zinc-400 mt-1">Reciben el brief → producen PRD, arquitectura de fricciones y diagnóstico de innovación. En ejecución por pipeline completo, Innovation corre después de PM+UX y recibe sus outputs; en ejecución por olas, corre en paralelo con ambos.</p></div>
+    <div class="card !py-4"><span class="tag mr-3">Ola 2 · Paralelo</span><strong>BA + AI Engineer + Data Scientist</strong><p class="text-sm text-zinc-400 mt-1">Reciben la Ola 1 → producen flujo AS-IS, arquitectura técnica y matriz de métricas.</p></div>
+    <div class="card !py-4"><span class="tag mr-3">Ola 3</span><strong>PMO</strong><p class="text-sm text-zinc-400 mt-1">Produce la matriz de riesgos, el resumen ejecutivo y el protocolo de gobernanza EVM.</p></div>
+    <div class="card !py-4 border-purple-500/30"><span class="tag mr-3">Ola 4</span><strong>The Challenger</strong><p class="text-sm text-zinc-400 mt-1">Audita todas las salidas frente a la Etapa 0 → produce un score de consistencia y un veredicto.</p></div>
+    <div class="card !py-4"><span class="tag mr-3">Ola 5 · Paralelo</span><strong>Propuesta + Propuesta Pública + Lecciones</strong><p class="text-sm text-zinc-400 mt-1">Cierran el ciclo con el entregable comercial, el sitio público y la bitácora de lecciones.</p></div>
+  </div>
+  <p class="text-sm text-zinc-500 mt-6"><strong class="text-zinc-300">Modo independiente:</strong> cualquier agente puede re-ejecutarse aislado, fuera del pipeline completo, con una instrucción puntual — útil para consultas específicas o seguimiento de proyectos activos.</p>
+</section>
+
+<section id="territorios">
+  <h2 class="text-2xl font-bold mb-6">04 · Territorios y límites de cada agente</h2>
+  <p class="text-zinc-400 mb-6 text-sm">La honestidad del sistema no viene de que los agentes sean "buenos" — viene de que tienen prohibiciones explícitas.</p>
+  <div class="card !p-0 overflow-x-auto">
+  <table class="text-sm">
+    <tr><th>Agente</th><th>Territorio</th><th>Lo que nunca hace</th></tr>
+    <tr><td class="mono text-zinc-300">stage0</td><td>Normalizar el insumo bruto en 39 celdas y evaluar calidad de datos</td><td>Asumir datos no existentes o maquillar vacíos de información</td></tr>
+    <tr><td class="mono text-indigo-300">PM</td><td>Definición de producto, propuesta de valor, PRD y user stories</td><td>Diseñar diagramas técnicos ni seleccionar modelos de IA</td></tr>
+    <tr><td class="mono text-indigo-300">UX</td><td>Viaje del usuario, mapas de empatía, fricciones y arquitectura de información</td><td>Definir viabilidad presupuestaria ni costo operativo</td></tr>
+    <tr><td class="mono text-pink-300">Innovation</td><td>Madurez tecnológica (Niveles 1–4) y escenarios de innovación</td><td>Proponer Nivel 4 si la madurez de datos del cliente es baja sin explicitar deuda técnica</td></tr>
+    <tr><td class="mono text-indigo-300">BA</td><td>Mapeo exhaustivo del proceso AS-IS en formato tabular</td><td>Mezclar el estado futuro (TO-BE) dentro del archivo AS-IS</td></tr>
+    <tr><td class="mono text-indigo-300">AI Engineer</td><td>Stack de modelos, RAG, infraestructura, latencia y seguridad de datos</td><td>Proponer, para el stack del proyecto del cliente, modelos de código cerrado si el brief exige privacidad on-premise</td></tr>
+    <tr><td class="mono text-emerald-300">Data Scientist</td><td>Métricas primarias, guardarraíl e indicadores de transformación</td><td>Definir métricas de vanidad sin mecanismo de medición y baseline</td></tr>
+    <tr><td class="mono text-pink-300">PMO</td><td>Matriz de riesgos, gatillos observables, dueños y gobernanza EVM según estándares internacionales</td><td>Asignar dueños genéricos como "el equipo"</td></tr>
+    <tr><td class="mono text-purple-300">The Challenger</td><td>Auditoría forense de contradicciones entre agentes y cálculo de salud cruzada</td><td>Aprobar una propuesta con contradicciones severas entre métricas y capacidades técnicas</td></tr>
+    <tr><td class="mono text-purple-300">Propuesta</td><td>Convierte el análisis en comunicación ejecutiva</td><td>Inventar precios o marcos de "días 1-30" no solicitados</td></tr>
+    <tr><td class="mono text-purple-300">Propuesta Pública</td><td>Condensa el output estructurado en una versión web para el cliente</td><td>Inventar diagnóstico nuevo o mencionar agentes, modelos y modos internos</td></tr>
+    <tr><td class="mono text-emerald-300">Lecciones</td><td>Cierre de proyecto y bitácora de causa raíz</td><td>Dejar vacíos los campos de causa raíz o supuesto fallido</td></tr>
+  </table>
+  </div>
+</section>
+
+<section id="agentes">
+  <h2 class="text-2xl font-bold mb-6">05 · Los 12 agentes en detalle</h2>
+  <div class="grid md:grid-cols-3 gap-4">
+    <div class="card"><p class="tag mb-3">// stage0</p><h3 class="font-semibold mb-1">Ingesta & Radiografía</h3><p class="text-sm text-zinc-400">Normaliza cualquier insumo en la matriz de 39 celdas y activa el semáforo de calidad antes de arrancar.</p></div>
+    <div class="card"><p class="tag mb-3">// PM</p><h3 class="font-semibold mb-1">Product Manager</h3><p class="text-sm text-zinc-400">Reformula el problema declarado en el real, separa síntoma de causa y fija métricas de éxito con baseline.</p></div>
+    <div class="card"><p class="tag mb-3">// UX</p><h3 class="font-semibold mb-1">UX Researcher</h3><p class="text-sm text-zinc-400">Mapea el viaje del usuario, fricciones y resistencia al cambio antes de tocar la solución.</p></div>
+    <div class="card"><p class="tag mb-3">// Innovation</p><h3 class="font-semibold mb-1">Innovation Strategist</h3><p class="text-sm text-zinc-400">Evalúa el nivel de madurez (1–4) y emite veredicto: continuar, ajustar o repensar desde cero. Salida interna.</p></div>
+    <div class="card"><p class="tag mb-3">// BA</p><h3 class="font-semibold mb-1">Business Analyst</h3><p class="text-sm text-zinc-400">Documenta el AS-IS real, incluidos los workarounds que nadie puso por escrito.</p></div>
+    <div class="card"><p class="tag mb-3">// AI Engineer</p><h3 class="font-semibold mb-1">Senior AI Engineer</h3><p class="text-sm text-zinc-400">Define arquitectura técnica, stack, RAG y condiciones de fallback antes de proponer automatización.</p></div>
+    <div class="card"><p class="tag mb-3">// Data Scientist</p><h3 class="font-semibold mb-1">Data Scientist</h3><p class="text-sm text-zinc-400">Diseña el experimento y las métricas de medición antes de que el proyecto arranque.</p></div>
+    <div class="card"><p class="tag mb-3">// PMO</p><h3 class="font-semibold mb-1">PMO · Estándares internacionales</h3><p class="text-sm text-zinc-400">Matriz de riesgos, hitos y protocolo de gobernanza EVM con seguimiento semanal SPI/CPI.</p></div>
+    <div class="card"><p class="tag mb-3">// The Challenger</p><h3 class="font-semibold mb-1">The Challenger</h3><p class="text-sm text-zinc-400">Detecta contradicciones entre los 8 agentes previos y emite un score de consistencia de 0 a 100.</p></div>
+    <div class="card"><p class="tag mb-3">// Propuesta</p><h3 class="font-semibold mb-1">Estratega Ejecutivo</h3><p class="text-sm text-zinc-400">Convierte el análisis en comunicación persuasiva, respaldada por el PMO Output.</p></div>
+    <div class="card"><p class="tag mb-3">// Propuesta Pública</p><h3 class="font-semibold mb-1">Versión Web Cliente</h3><p class="text-sm text-zinc-400">Genera el sitio interactivo público, sin lenguaje de auditoría interna ni referencias al sistema.</p></div>
+    <div class="card"><p class="tag mb-3">// Lecciones</p><h3 class="font-semibold mb-1">Cierre de Proyecto</h3><p class="text-sm text-zinc-400">Registra qué supuesto falló y qué cambiaría la próxima vez. Se archiva como historial entre proyectos.</p></div>
+  </div>
+</section>
+
+<section id="modelos">
+  <h2 class="text-2xl font-bold mb-6">06 · Qué modelo de IA usa el sistema</h2>
+  <div class="card space-y-4 text-zinc-300 leading-relaxed">
+    <h3 class="font-semibold text-zinc-100">Diseño del producto</h3>
+    <p>El método no depende de un proveedor de IA concreto. En la versión que Nextgenflow entrega a sus clientes, cada agente del workflow se ejecuta con el modelo de IA que la organización configure, según sus requisitos de calidad, coste, privacidad y cumplimiento normativo. La calidad del resultado se controla mediante las prohibiciones de cada agente, la auditoría cruzada y los checkpoints humanos, no mediante la elección de un modelo concreto.</p>
+    <h3 class="font-semibold text-zinc-100">Mi configuración actual</h3>
+    <p>En mi propio despliegue, los 12 agentes funcionan sobre la familia Google Gemini, a través de Google AI Studio, con un único modelo activo seleccionable desde la interfaz y un nivel de razonamiento ajustable según la complejidad de cada tarea.</p>
+    <p>Si el modelo elegido no está disponible, mi despliegue reintenta con backoff automático y pasa a otro modelo de la misma familia sin interrumpir la ejecución. Esta es una configuración de uso, no una restricción del producto.</p>
+  </div>
+</section>
+
+<section id="flujos-situacion">
+  <h2 class="text-2xl font-bold mb-6">07 · Flujos por modo de uso</h2>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="card"><p class="tag mb-3">// Modo Consultoría</p><p class="text-sm text-zinc-300">Orientado a clientes corporativos y agencias. Corre el pipeline completo con propuesta comercial y su versión pública para presentar.</p></div>
+    <div class="card"><p class="tag mb-3">// Modo Aplicación Estratégica</p><p class="text-sm text-zinc-300">Con ingeniería inversa de la job description, para postulaciones de liderazgo en IA y transformación digital. Sin precios ni marcos de "primeros 90 días"; la autoría queda siempre atribuida a mí.</p></div>
+  </div>
+  <p class="text-sm text-zinc-500 mt-4">Tiempo de ejecución de referencia en mi configuración actual: 25–45 segundos hasta la auditoría cruzada (sin propuesta); 60–95 segundos con el pipeline completo. El resultado es un primer borrador para revisión humana, no un entregable final.</p>
+</section>
+
+<section id="contexto">
+  <h2 class="text-2xl font-bold mb-6">08 · Cómo se pasa contexto entre agentes</h2>
+  <div class="card text-sm text-zinc-300 leading-relaxed">
+    <p>El contexto no se copia manualmente: cada llamada envía un objeto tipado en JSON con el brief de la Etapa 0 y las salidas previas relevantes de cada agente, más los parámetros de modelo, idioma y modo de uso activos.</p>
+  </div>
+</section>
+
+<section id="protocolo-input">
+  <h2 class="text-2xl font-bold mb-6">09 · Protocolo de Input</h2>
+  <div class="card space-y-4 text-sm text-zinc-300 leading-relaxed">
+    <p>Antes de que cualquier dato entre al pipeline, se normaliza en una <strong class="text-zinc-100">matriz de 39 celdas</strong> organizada en 6 bloques: Identidad y Patrocinio, Contexto Operativo y Dolor, Madurez de Datos y Seguridad, Personas y Cultura, Objetivos y Métricas, y Restricciones y Supuestos Críticos.</p>
+    <p>Cada celda se etiqueta con confianza <span class="tag !text-emerald-300">Alta</span> <span class="tag !text-amber-300">Media</span> <span class="tag !text-pink-300">Baja</span>. El semáforo global bloquea el avance cuando el input es ambiguo, contradictorio o de puro marketing corporativo; en zona intermedia exige un cuestionario de nivelación pero permite continuar. Una persona puede editar manualmente el semáforo y desbloquear el avance.</p>
+    <p>Se acepta texto, PDF, audio e imágenes como insumo. Cuando la búsqueda es confidencial, el sistema reemplaza el nombre del cliente o intermediario por un descriptor anónimo en todas las salidas públicas.</p>
+  </div>
+</section>
+
+<section id="harness">
+  <h2 class="text-2xl font-bold mb-6">10 · Protocolo de Harness</h2>
+  <div class="card space-y-4 text-sm text-zinc-300 leading-relaxed">
+    <p><strong class="text-zinc-100">Checkpoints humanos obligatorios:</strong> validación del brief antes de lanzar el pipeline, compuerta del semáforo rojo, y aprobación del veredicto de auditoría antes de considerar cualquier propuesta como final. Ninguna acción se publica o se envía al cliente de forma automática.</p>
+    <p><strong class="text-zinc-100">Resiliencia (en mi despliegue actual):</strong> reintentos automáticos con backoff y reparación de JSON ante respuestas truncadas. Si se agotan los reintentos por saturación o cuota, se activa un <strong class="text-zinc-100">modo de continuidad</strong> marcado explícitamente como tal en el output: genera contenido estructurado a partir del texto disponible en vez de detener el pipeline. En ese modo, el score de auditoría cruzada no refleja un análisis real y debe leerse como provisorio.</p>
+    <p><strong class="text-zinc-100">Gobernanza EVM:</strong> SPI y CPI en verde desde 0,95, en alerta entre 0,85 y 0,94, en desvío crítico por debajo de 0,85. El score de riesgo (Bajo/Medio/Alto/Crítico) sube automáticamente una categoría cuando la confianza del dato es baja.</p>
+    <p><strong class="text-zinc-100">Auditoría cruzada:</strong> consistente desde 80/100, observaciones leves entre 60 y 79, contradicciones críticas por debajo de 60.</p>
+  </div>
+</section>
+
+<section id="casos">
+  <h2 class="text-2xl font-bold mb-6">11 · Casos de uso diarios</h2>
+  <div class="card !p-0 overflow-x-auto">
+  <table class="text-sm">
+    <tr><th>Necesidad</th><th>Agente</th></tr>
+    <tr><td>Reformular el problema del cliente / detectar scope creep</td><td class="mono text-indigo-300">PM</td></tr>
+    <tr><td>Analizar resistencia al cambio</td><td class="mono text-indigo-300">UX</td></tr>
+    <tr><td>Evaluar nivel de innovación de lo pedido</td><td class="mono text-pink-300">Innovation</td></tr>
+    <tr><td>Documentar proceso AS-IS</td><td class="mono text-indigo-300">BA</td></tr>
+    <tr><td>Elegir stack tecnológico</td><td class="mono text-indigo-300">AI Engineer</td></tr>
+    <tr><td>Diseñar experimento de medición</td><td class="mono text-emerald-300">Data Scientist</td></tr>
+    <tr><td>Construir matriz de riesgos / reporte EVM</td><td class="mono text-pink-300">PMO</td></tr>
+    <tr><td>Auditar consistencia entre agentes</td><td class="mono text-purple-300">The Challenger</td></tr>
+    <tr><td>Redactar propuesta comercial o de proyecto</td><td class="mono text-purple-300">Propuesta</td></tr>
+  </table>
+  </div>
+</section>
+
+<section id="artefactos">
+  <h2 class="text-2xl font-bold mb-6">12 · Artefactos en uso</h2>
+  <div class="card !p-0 overflow-x-auto">
+  <table class="text-sm">
+    <tr><th>Artefacto</th><th>Formato</th><th>Origen</th></tr>
+    <tr><td>Brief estructurado con matriz de 39 celdas</td><td class="mono">.md</td><td>Etapa 0</td></tr>
+    <tr><td>Flujo AS-IS (paso, actor, sistema, fricción, automatizable)</td><td class="mono">.csv</td><td>BA</td></tr>
+    <tr><td>Matriz de métricas e hipótesis</td><td class="mono">.csv</td><td>Data Scientist</td></tr>
+    <tr><td>Matriz de riesgos PMO</td><td class="mono">.csv</td><td>PMO</td></tr>
+    <tr><td>Plantilla de gobernanza semanal EVM</td><td class="mono">.csv</td><td>PMO</td></tr>
+    <tr><td>Lecciones aprendidas (formato Obsidian)</td><td class="mono">.md</td><td>Lecciones</td></tr>
+    <tr><td>Propuesta estratégica interna</td><td class="mono">.md</td><td>Propuesta</td></tr>
+    <tr><td>Propuesta pública con simulador EVM embebido</td><td class="mono">.html</td><td>Propuesta Pública</td></tr>
+  </table>
+  </div>
+  <p class="text-sm text-zinc-500 mt-4">Los ocho artefactos se generan y exportan automáticamente (CSV, Markdown, HTML, ZIP); ninguno requiere completarse desde cero a mano.</p>
+</section>
+
+<section id="referencia">
+<section id="errores">
+  <h2 class="text-2xl font-bold mb-6">13 · Errores comunes y cómo evitarlos</h2>
+  <div class="card space-y-3 text-sm text-zinc-300">
+    <p><strong class="text-zinc-100">Saltear el Innovation Strategist</strong> porque "ya sé lo que el cliente necesita" — ahí aparecen las brechas de ambición no identificadas.</p>
+    <p><strong class="text-zinc-100">Aceptar un veredicto sin leer los supuestos</strong> que lo sustentan.</p>
+    <p><strong class="text-zinc-100">Compartir la salida interna de Innovation sin filtrar</strong> con el cliente — es un insumo interno; la Propuesta Pública lo convierte en comunicación apropiada.</p>
+    <p><strong class="text-zinc-100">Arrancar con un brief en semáforo rojo</strong> sin resolver los vacíos — el resultado hereda esa fragilidad en cada etapa siguiente.</p>
+    <p><strong class="text-zinc-100">Correr la Ola 2 sin haber cerrado la Ola 1</strong> — los tres agentes trabajarían sobre un problema mal calibrado.</p>
+    <p><strong class="text-zinc-100">Tratar un output en modo de continuidad como si fuera un análisis real</strong> — anula el propósito del protocolo de resiliencia.</p>
+    <p><strong class="text-zinc-100">Saltar directo a Propuesta sin pasar por PMO</strong> — pierde el respaldo de gobernanza y riesgos frente al cliente.</p>
+    <p><strong class="text-zinc-100">Ignorar un veredicto de contradicciones críticas de The Challenger</strong> antes de dar la propuesta por final.</p>
+  </div>
+</section>
+
+<section id="checklist">
+  <h2 class="text-2xl font-bold mb-6">14 · Checklist de calidad antes de cualquier entrega</h2>
+  <div class="card grid md:grid-cols-2 gap-3 text-sm text-zinc-300">
+    <p>¿Cada celda del brief tiene fuente y nivel de confianza clasificado?</p>
+    <p>¿El semáforo de la Etapa 0 está en verde o amarillo resuelto, no en rojo?</p>
+    <p>¿Cada agente respetó su territorio sin invadir el de otro?</p>
+    <p>¿Innovation recibió el contexto de PM + UX antes de emitir veredicto?</p>
+    <p>¿Hubo checkpoint humano antes de cualquier acción irreversible?</p>
+    <p>¿The Challenger emitió consistencia igual o mayor a 80, o se revisaron las observaciones?</p>
+    <p>¿La matriz de riesgos tiene probabilidad, impacto y owner por ítem?</p>
+    <p>¿La Propuesta Pública omite nombres de agentes, modelos y modos internos?</p>
+    <p>¿Se archivaron las Lecciones Aprendidas al cierre, con supuesto fallido explícito?</p>
+    <p>¿Ningún output se marcó como definitivo si vino del modo de continuidad?</p>
+  </div>
+</section>
+</section>
+
+</main>
+
+<footer class="border-t border-zinc-800/80 py-10">
+  <div class="max-w-5xl mx-auto px-6 text-xs text-zinc-500 space-y-2">
+    <p>Sistema Multiagente de Gestión de Proyectos · 12 agentes · Alineado con estándares internacionales de gestión de proyectos</p>
+    <p>María Agustina Sanguinetti Flores · Octubre 2026</p>
+    <p>© 2026 María Agustina Sanguinetti Flores. Todos los derechos reservados. Este documento y la arquitectura del sistema multiagente descrita (roles, prohibiciones, flujo de etapas, protocolos y plantillas) son propiedad intelectual de la autora. Queda prohibida su reproducción, distribución o uso total o parcial fuera del propósito de evaluación acordado sin autorización expresa por escrito.</p>
+  </div>
+</footer>
+
+</body>
+</html>

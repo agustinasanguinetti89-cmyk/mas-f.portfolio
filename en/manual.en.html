@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Method Manual · María Agustina Sanguinetti Flores</title>
+<meta name="description" content="Method Manual: decision-making criteria and a 12-agent specialized system, run with AI under human-in-the-loop. Author: María Agustina Sanguinetti Flores.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);}
+  html{scroll-behavior:smooth;scroll-padding-top:calc(88px + env(safe-area-inset-top,0px));}
+  body{font-family:'Inter',sans-serif;background:#09090b;color:#f4f4f5;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  table{width:100%;border-collapse:collapse;}
+  th,td{text-align:left;padding:.65rem .9rem;border-bottom:1px solid rgba(63,63,70,.5);vertical-align:top;}
+  th{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#a1a1aa;background:rgba(24,24,27,.6);}
+  tr:hover td{background:rgba(39,39,42,.3);}
+  .tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;background:rgba(9,9,11,.6);border:1px solid rgba(39,39,42,.8);color:#a5b4fc;padding:.25rem .6rem;border-radius:.4rem;display:inline-block;}
+  .card{background:rgba(24,24,27,.3);border:1px solid rgba(39,39,42,.8);border-radius:1.5rem;padding:1.75rem;transition:border-color .15s;}
+  .card:hover{border-color:#3f3f46;}
+</style>
+</head>
+<body class="text-zinc-100">
+
+<nav class="sticky top-0 z-50 backdrop-blur-md bg-zinc-950/80 border-b border-zinc-800/80">
+  <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between text-xs mono text-zinc-400 overflow-x-auto whitespace-nowrap gap-6">
+    <span class="text-zinc-100 font-medium">MAS[F] // Method Manual</span>
+    <a href="/es/manual.html" aria-label="Switch to Spanish" class="hover:text-indigo-400">ES</a>
+    <div class="flex gap-5">
+      <a href="#foundations" class="hover:text-indigo-400">Foundations</a>
+      <a href="#system" class="hover:text-indigo-400">System</a>
+      <a href="#agents" class="hover:text-indigo-400">Agents</a>
+      <a href="#deliverables" class="hover:text-indigo-400">Deliverables</a>
+      <a href="#reference" class="hover:text-indigo-400">Reference</a>
+      <a href="/en/index.en.html" class="hover:text-indigo-400">← Back to portfolio</a>
+      <a href="/en/certificaciones.en.html" class="hover:text-indigo-400">Training</a>
+    </div>
+  </div>
+</nav>
+
+<header class="max-w-5xl mx-auto px-6 pt-16 pb-14">
+  <p class="tag mb-6">// Method Manual</p>
+  <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">María Agustina Sanguinetti Flores</h1>
+  <p class="text-zinc-400 mt-4 text-lg max-w-2xl">Decision-making criteria and a system of 12 specialized agents — now executed with AI.</p>
+  <div class="flex flex-wrap gap-2 mt-6">
+    <span class="tag">Proprietary Professional Knowledge Base</span>
+    <span class="tag">Code-based orchestration · Google AI Studio</span>
+    <span class="tag">International project management standards</span>
+    <span class="tag">12 agents</span>
+  </div>
+
+  <div class="mt-8 rounded-xl border border-purple-500/40 bg-purple-600/10 px-6 py-4 text-sm text-purple-200">
+    🔒 <strong>Human-in-the-loop as a core principle:</strong> no irreversible action runs, and no outcome is promised, without explicit human approval. This document describes a decision-support method — not an autonomous system.
+  </div>
+
+  <p class="text-sm text-zinc-500 mt-4 max-w-2xl">Scope of this document: it describes the method and its current implementation in my own deployment. The product Nextgenflow delivers to its clients is independent of any specific AI provider: each organization configures the model used by each agent.</p>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
+    <div class="card"><p class="text-3xl font-bold text-indigo-400">12</p><p class="text-xs text-zinc-500 mt-1">Specialized agents</p></div>
+    <div class="card"><p class="text-3xl font-bold text-indigo-400">6</p><p class="text-xs text-zinc-500 mt-1">Pipeline stages</p></div>
+    <div class="card"><p class="text-3xl font-bold text-indigo-400">8</p><p class="text-xs text-zinc-500 mt-1">Operating deliverables</p></div>
+    <div class="card"><p class="text-3xl font-bold text-indigo-400">1</p><p class="text-xs text-zinc-500 mt-1">Proprietary methodology</p></div>
+  </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-6 space-y-20 pb-24">
+
+<section id="foundations">
+  <h2 class="text-2xl font-bold mb-6">01 · Who I am and how I think</h2>
+  <div class="card space-y-4 text-zinc-300 leading-relaxed">
+    <p>The way I work doesn't come from a tool or an AI experiment: it's the operational expression of a methodology systematically documented in a proprietary <strong class="text-zinc-100">Professional Knowledge Base</strong>, built as the single source of truth for my professional identity.</p>
+    <p class="italic text-zinc-400">"It doesn't aim to tell my story — it documents how I think, how I work, and what evidence supports that way of working."</p>
+    <p>The base distinguishes three levels of knowledge: <strong class="text-zinc-100">facts</strong> (verifiable information), <strong class="text-zinc-100">patterns</strong> (repeatedly observed conclusions), and <strong class="text-zinc-100">hypotheses</strong> (plausible ideas requiring validation). This principle — never confusing certainty with inference — is what structures the prohibitions and confidence levels of every agent.</p>
+    <ul class="grid md:grid-cols-2 gap-2 text-sm text-zinc-400 pt-2">
+      <li class="tag !text-zinc-300">Identity precedes title</li>
+      <li class="tag !text-zinc-300">Evidence precedes narrative</li>
+      <li class="tag !text-zinc-300">Understanding precedes intervention</li>
+      <li class="tag !text-zinc-300">Each idea exists exactly once</li>
+    </ul>
+    <p>AI is incorporated as an enabler that amplifies analytical and management capacity — not as a change of discipline.</p>
+  </div>
+</section>
+
+<section id="method">
+  <h2 class="text-2xl font-bold mb-6">02 · My working method</h2>
+  <div class="card space-y-4 text-zinc-300 leading-relaxed">
+    <p>Work is organized into agents with a clear territory and explicit prohibitions, so no agent encroaches on another's role. It isn't an advanced chatbot: it's a professional work architecture where each agent represents a distinct perspective on the same problem.</p>
+    <p><strong class="text-zinc-100">Guiding principle:</strong> understand before proposing. No agent proposes a solution before understanding the context. Every agent states a confidence level, flags assumptions, and declines to answer when minimum information is missing.</p>
+    <p><strong class="text-zinc-100">Core rule:</strong> every output is tentative until a full diagnosis exists with the actual client or stakeholder.</p>
+  </div>
+</section>
+
+<section id="system">
+  <h2 class="text-2xl font-bold mb-6">03 · How it works systemically</h2>
+  <p class="text-zinc-400 mb-6 text-sm">The pipeline runs across 6 chained stages, implemented in code (TypeScript + Express), with two trigger modes: full pipeline or concurrent waves.</p>
+  <div class="space-y-3">
+    <div class="card !py-4"><span class="tag mr-3">Stage 0</span><strong>Ingestion & Radiography</strong><p class="text-sm text-zinc-400 mt-1">Takes in text, audio, PDF or images → produces the 39-cell matrix and the data-quality traffic light.</p></div>
+    <div class="card !py-4 border-indigo-500/30"><span class="tag mr-3">Wave 1 · Parallel</span><strong>PM + UX + Innovation</strong><p class="text-sm text-zinc-400 mt-1">Receive the brief → produce the PRD, friction map and innovation diagnosis. In full-pipeline mode, Innovation runs after PM+UX and receives their outputs; in wave mode, it runs in parallel with both.</p></div>
+    <div class="card !py-4"><span class="tag mr-3">Wave 2 · Parallel</span><strong>BA + AI Engineer + Data Scientist</strong><p class="text-sm text-zinc-400 mt-1">Receive Wave 1's output → produce the AS-IS flow, technical architecture and metrics matrix.</p></div>
+    <div class="card !py-4"><span class="tag mr-3">Wave 3</span><strong>PMO</strong><p class="text-sm text-zinc-400 mt-1">Produces the risk matrix, executive summary and EVM governance protocol.</p></div>
+    <div class="card !py-4 border-purple-500/30"><span class="tag mr-3">Wave 4</span><strong>The Challenger</strong><p class="text-sm text-zinc-400 mt-1">Audits every output against Stage 0 → produces a consistency score and verdict.</p></div>
+    <div class="card !py-4"><span class="tag mr-3">Wave 5 · Parallel</span><strong>Proposal + Public Proposal + Lessons</strong><p class="text-sm text-zinc-400 mt-1">Close the cycle with the commercial deliverable, the public site and the lessons log.</p></div>
+  </div>
+  <p class="text-sm text-zinc-500 mt-6"><strong class="text-zinc-300">Standalone mode:</strong> any agent can be re-run in isolation, outside the full pipeline, with a specific instruction — useful for point queries or following up on active projects.</p>
+</section>
+
+<section id="territories">
+  <h2 class="text-2xl font-bold mb-6">04 · Territories and boundaries</h2>
+  <p class="text-zinc-400 mb-6 text-sm">The system's integrity doesn't come from agents being "good" — it comes from having explicit prohibitions.</p>
+  <div class="card !p-0 overflow-x-auto">
+  <table class="text-sm">
+    <tr><th>Agent</th><th>Territory</th><th>Never does</th></tr>
+    <tr><td class="mono text-zinc-300">stage0</td><td>Normalize raw input into 39 cells and assess data quality</td><td>Assume non-existent data or paper over information gaps</td></tr>
+    <tr><td class="mono text-indigo-300">PM</td><td>Product definition, value proposition, PRD and user stories</td><td>Design technical diagrams or select AI models</td></tr>
+    <tr><td class="mono text-indigo-300">UX</td><td>User journey, empathy maps, friction and information architecture</td><td>Define budget viability or operating cost</td></tr>
+    <tr><td class="mono text-pink-300">Innovation</td><td>Technology maturity (Levels 1–4) and innovation scenarios</td><td>Propose Level 4 if client data maturity is low without flagging technical debt</td></tr>
+    <tr><td class="mono text-indigo-300">BA</td><td>Exhaustive AS-IS process mapping in tabular format</td><td>Mix future-state (TO-BE) content into the AS-IS file</td></tr>
+    <tr><td class="mono text-indigo-300">AI Engineer</td><td>Model stack, RAG, infrastructure, latency and data security</td><td>Propose, for the client project's stack, closed-source models when the brief requires on-premise privacy</td></tr>
+    <tr><td class="mono text-emerald-300">Data Scientist</td><td>Primary metrics, guardrail metrics and transformation indicators</td><td>Define vanity metrics without a measurement mechanism and baseline</td></tr>
+    <tr><td class="mono text-pink-300">PMO</td><td>Risk matrix, observable triggers, owners and EVM governance aligned with international standards</td><td>Assign generic owners like "the team"</td></tr>
+    <tr><td class="mono text-purple-300">The Challenger</td><td>Forensic audit of cross-agent contradictions and cross-health scoring</td><td>Approve a proposal with severe contradictions between metrics and technical capabilities</td></tr>
+    <tr><td class="mono text-purple-300">Proposal</td><td>Turns the analysis into executive-level communication</td><td>Invent pricing or unrequested "days 1-30" frameworks</td></tr>
+    <tr><td class="mono text-purple-300">Public Proposal</td><td>Condenses the structured output into a client-facing web version</td><td>Invent new diagnosis, or name internal agents, models or modes</td></tr>
+    <tr><td class="mono text-emerald-300">Lessons</td><td>Project closure and root-cause log</td><td>Leave root-cause fields (wrong assumption) empty</td></tr>
+  </table>
+  </div>
+</section>
+
+<section id="agents">
+  <h2 class="text-2xl font-bold mb-6">05 · The 12 agents in detail</h2>
+  <div class="grid md:grid-cols-3 gap-4">
+    <div class="card"><p class="tag mb-3">// stage0</p><h3 class="font-semibold mb-1">Ingestion & Radiography</h3><p class="text-sm text-zinc-400">Normalizes any input into the 39-cell matrix and triggers the quality traffic light before the pipeline starts.</p></div>
+    <div class="card"><p class="tag mb-3">// PM</p><h3 class="font-semibold mb-1">Product Manager</h3><p class="text-sm text-zinc-400">Reframes the stated problem into the real one, separates symptom from cause, and sets success metrics with a baseline.</p></div>
+    <div class="card"><p class="tag mb-3">// UX</p><h3 class="font-semibold mb-1">UX Researcher</h3><p class="text-sm text-zinc-400">Maps the user journey, friction and change resistance before touching the solution.</p></div>
+    <div class="card"><p class="tag mb-3">// Innovation</p><h3 class="font-semibold mb-1">Innovation Strategist</h3><p class="text-sm text-zinc-400">Assesses maturity level (1–4) and issues a verdict: continue, adjust, or rethink from scratch. Internal output.</p></div>
+    <div class="card"><p class="tag mb-3">// BA</p><h3 class="font-semibold mb-1">Business Analyst</h3><p class="text-sm text-zinc-400">Documents the real AS-IS, including the workarounds nobody wrote down.</p></div>
+    <div class="card"><p class="tag mb-3">// AI Engineer</p><h3 class="font-semibold mb-1">Senior AI Engineer</h3><p class="text-sm text-zinc-400">Defines technical architecture, stack, RAG and fallback conditions before proposing automation.</p></div>
+    <div class="card"><p class="tag mb-3">// Data Scientist</p><h3 class="font-semibold mb-1">Data Scientist</h3><p class="text-sm text-zinc-400">Designs the experiment and measurement metrics before the project kicks off.</p></div>
+    <div class="card"><p class="tag mb-3">// PMO</p><h3 class="font-semibold mb-1">PMO · International standards</h3><p class="text-sm text-zinc-400">Risk matrix, milestones and EVM governance protocol with weekly SPI/CPI tracking.</p></div>
+    <div class="card"><p class="tag mb-3">// The Challenger</p><h3 class="font-semibold mb-1">The Challenger</h3><p class="text-sm text-zinc-400">Detects contradictions across the 8 prior agents and issues a consistency score from 0 to 100.</p></div>
+    <div class="card"><p class="tag mb-3">// Proposal</p><h3 class="font-semibold mb-1">Executive Strategist</h3><p class="text-sm text-zinc-400">Turns the analysis into persuasive communication, backed by the PMO output.</p></div>
+    <div class="card"><p class="tag mb-3">// Public Proposal</p><h3 class="font-semibold mb-1">Client-Facing Web Version</h3><p class="text-sm text-zinc-400">Generates the interactive public site, free of internal audit language or system references.</p></div>
+    <div class="card"><p class="tag mb-3">// Lessons</p><h3 class="font-semibold mb-1">Project Closure</h3><p class="text-sm text-zinc-400">Logs which assumption failed and what would change next time. Archived as cross-project history.</p></div>
+  </div>
+</section>
+
+<section id="models">
+  <h2 class="text-2xl font-bold mb-6">06 · Which AI model the system runs on</h2>
+  <div class="card space-y-3 text-zinc-300 leading-relaxed">
+    <h3 class="font-semibold text-zinc-100">Product design</h3>
+    <p>The method doesn't depend on any specific AI provider. In the version Nextgenflow delivers to its clients, every agent in the workflow runs on whichever AI model the organization configures, according to its own requirements for quality, cost, privacy and regulatory compliance. Output quality is controlled through each agent's prohibitions, cross-agent auditing and human checkpoints — not through the choice of a specific model.</p>
+    <h3 class="font-semibold text-zinc-100 pt-2">My current configuration</h3>
+    <p>In my own deployment, all 12 agents run on the Google Gemini family, through Google AI Studio, with a single active model selectable from the interface and an adjustable reasoning level depending on task complexity.</p>
+    <p>If the selected model is unavailable, my deployment retries automatically with backoff and switches to a model in the same family without interrupting execution. This is a usage configuration, not a product constraint.</p>
+  </div>
+</section>
+
+<section id="modes">
+  <h2 class="text-2xl font-bold mb-6">07 · Flows by mode of use</h2>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="card"><p class="tag mb-3">// Consulting Mode</p><p class="text-sm text-zinc-300">Aimed at corporate clients and agencies. Runs the full pipeline with a commercial proposal and its public version for presentation.</p></div>
+    <div class="card"><p class="tag mb-3">// Strategic Application Mode</p><p class="text-sm text-zinc-300">Uses reverse-engineered job descriptions for AI and digital-transformation leadership applications. No pricing or "first 90 days" framing; authorship is always attributed to me.</p></div>
+  </div>
+  <p class="text-sm text-zinc-500 mt-4">Reference runtime in my current configuration: 25–45 seconds through cross-agent audit (no proposal); 60–95 seconds for the full pipeline. The result is a first draft for human review, not a final deliverable.</p>
+</section>
+
+<section id="context">
+  <h2 class="text-2xl font-bold mb-6">08 · How context passes between agents</h2>
+  <div class="card text-sm text-zinc-300 leading-relaxed">
+    <p>Context isn't copied by hand: each call sends a typed JSON object containing the Stage 0 brief and the relevant prior agent outputs, plus the active model, language and usage-mode parameters.</p>
+  </div>
+</section>
+
+<section id="input">
+  <h2 class="text-2xl font-bold mb-6">09 · Input Protocol</h2>
+  <div class="card space-y-4 text-sm text-zinc-300 leading-relaxed">
+    <p>Before any data enters the pipeline, it's normalized into a <strong class="text-zinc-100">39-cell matrix</strong> organized into 6 blocks: Identity & Sponsorship, Operating Context & Pain, Data Maturity & Security, People & Culture, Objectives & Success Metrics, and Constraints & Critical Assumptions.</p>
+    <p>Each cell is tagged with confidence: <span class="tag !text-emerald-300">High</span> <span class="tag !text-amber-300">Medium</span> <span class="tag !text-pink-300">Low</span>. The overall traffic light blocks progress when the input is ambiguous, contradictory, or pure corporate marketing; in the intermediate zone it requires a leveling questionnaire but allows continuation. A person can manually override the traffic light and unlock progress.</p>
+    <p>Text, PDF, audio and images are accepted as input. When a search is confidential, the system replaces the client's or intermediary's name with an anonymous descriptor across every public output.</p>
+  </div>
+</section>
+
+<section id="harness">
+  <h2 class="text-2xl font-bold mb-6">10 · Harness Protocol</h2>
+  <div class="card space-y-4 text-sm text-zinc-300 leading-relaxed">
+    <p><strong class="text-zinc-100">Mandatory human checkpoints:</strong> brief validation before launching the pipeline, the red-traffic-light gate, and approval of the audit verdict before any proposal is treated as final. No action is ever published or sent to a client automatically.</p>
+    <p><strong class="text-zinc-100">Resilience (in my current deployment):</strong> automatic retries with backoff and JSON repair for truncated responses. If retries are exhausted due to saturation or quota limits, a <strong class="text-zinc-100">continuity mode</strong> activates, explicitly flagged as such in the output: it generates structured content from the available text instead of stopping the pipeline. In that mode, the cross-audit score does not reflect a real analysis and should be read as provisional.</p>
+    <p><strong class="text-zinc-100">EVM governance:</strong> SPI and CPI are green from 0.95, in alert between 0.85 and 0.94, and in critical deviation below 0.85. The risk score (Low/Medium/High/Critical) automatically escalates one category when data confidence is low.</p>
+    <p><strong class="text-zinc-100">Cross-agent audit:</strong> consistent from 80/100, minor observations between 60 and 79, critical contradictions below 60.</p>
+  </div>
+</section>
+
+<section id="use-cases">
+  <h2 class="text-2xl font-bold mb-6">11 · Day-to-day use cases</h2>
+  <div class="card !p-0 overflow-x-auto">
+  <table class="text-sm">
+    <tr><th>Need</th><th>Agent</th></tr>
+    <tr><td>Reframe the client's problem / catch scope creep</td><td class="mono text-indigo-300">PM</td></tr>
+    <tr><td>Analyze change resistance</td><td class="mono text-indigo-300">UX</td></tr>
+    <tr><td>Assess the innovation level of a request</td><td class="mono text-pink-300">Innovation</td></tr>
+    <tr><td>Document the AS-IS process</td><td class="mono text-indigo-300">BA</td></tr>
+    <tr><td>Choose the technical stack</td><td class="mono text-indigo-300">AI Engineer</td></tr>
+    <tr><td>Design a measurement experiment</td><td class="mono text-emerald-300">Data Scientist</td></tr>
+    <tr><td>Build the risk matrix / EVM report</td><td class="mono text-pink-300">PMO</td></tr>
+    <tr><td>Audit consistency across agents</td><td class="mono text-purple-300">The Challenger</td></tr>
+    <tr><td>Draft a commercial or project proposal</td><td class="mono text-purple-300">Proposal</td></tr>
+  </table>
+  </div>
+</section>
+
+<section id="deliverables">
+  <h2 class="text-2xl font-bold mb-6">12 · Deliverables in use</h2>
+  <div class="card !p-0 overflow-x-auto">
+  <table class="text-sm">
+    <tr><th>Deliverable</th><th>Format</th><th>Source</th></tr>
+    <tr><td>Structured brief with 39-cell matrix</td><td class="mono">.md</td><td>Stage 0</td></tr>
+    <tr><td>AS-IS flow (step, actor, system, friction, automatable)</td><td class="mono">.csv</td><td>BA</td></tr>
+    <tr><td>Metrics & hypothesis matrix</td><td class="mono">.csv</td><td>Data Scientist</td></tr>
+    <tr><td>PMO risk matrix</td><td class="mono">.csv</td><td>PMO</td></tr>
+    <tr><td>Weekly EVM governance template</td><td class="mono">.csv</td><td>PMO</td></tr>
+    <tr><td>Lessons learned (Obsidian format)</td><td class="mono">.md</td><td>Lessons</td></tr>
+    <tr><td>Internal strategic proposal</td><td class="mono">.md</td><td>Proposal</td></tr>
+    <tr><td>Public proposal with embedded EVM simulator</td><td class="mono">.html</td><td>Public Proposal</td></tr>
+  </table>
+  </div>
+  <p class="text-sm text-zinc-500 mt-4">All eight deliverables are generated and exported automatically (CSV, Markdown, HTML, ZIP); none requires being built from scratch by hand.</p>
+</section>
+
+<section id="reference">
+<section id="pitfalls">
+  <h2 class="text-2xl font-bold mb-6">13 · Common pitfalls and how to avoid them</h2>
+  <div class="card space-y-3 text-sm text-zinc-300">
+    <p><strong class="text-zinc-100">Skipping the Innovation Strategist</strong> because "I already know what the client needs" — that's exactly where unidentified ambition gaps appear.</p>
+    <p><strong class="text-zinc-100">Accepting a verdict without reading the assumptions</strong> behind it.</p>
+    <p><strong class="text-zinc-100">Sharing Innovation's raw internal output</strong> with the client unfiltered — it's an internal input; the Public Proposal turns it into appropriate communication.</p>
+    <p><strong class="text-zinc-100">Starting with a red-light brief</strong> without resolving the gaps — the result inherits that fragility at every following stage.</p>
+    <p><strong class="text-zinc-100">Running Wave 2 before Wave 1 has closed</strong> — the three agents would work on a poorly calibrated problem.</p>
+    <p><strong class="text-zinc-100">Treating a continuity-mode output as a real analysis</strong> — defeats the purpose of the resilience protocol.</p>
+    <p><strong class="text-zinc-100">Jumping straight to Proposal without going through PMO</strong> — loses governance and risk backing in front of the client.</p>
+    <p><strong class="text-zinc-100">Ignoring a critical-contradictions verdict from The Challenger</strong> before treating a proposal as final.</p>
+  </div>
+</section>
+
+<section id="checklist">
+  <h2 class="text-2xl font-bold mb-6">14 · Quality checklist before any delivery</h2>
+  <div class="card grid md:grid-cols-2 gap-3 text-sm text-zinc-300">
+    <p>Does every brief cell have a source and a classified confidence level?</p>
+    <p>Is the Stage 0 traffic light green, or yellow with gaps resolved — not red?</p>
+    <p>Did every agent stay within its territory without invading another's?</p>
+    <p>Did Innovation receive PM + UX context before issuing its verdict?</p>
+    <p>Was there a human checkpoint before any irreversible action?</p>
+    <p>Did The Challenger score consistency at 80 or above, or were observations reviewed?</p>
+    <p>Does the risk matrix have probability, impact and an owner per item?</p>
+    <p>Does the Public Proposal omit agent names, models and internal modes?</p>
+    <p>Were Lessons Learned archived at closure, with an explicit failed assumption?</p>
+    <p>Was no output marked final if it came from continuity mode?</p>
+  </div>
+</section>
+</section>
+
+</main>
+
+<footer class="border-t border-zinc-800/80 py-10">
+  <div class="max-w-5xl mx-auto px-6 text-xs text-zinc-500 space-y-2">
+    <p>Multi-Agent Project Management System · 12 agents · Aligned with international project management standards</p>
+    <p>María Agustina Sanguinetti Flores · October 2026</p>
+    <p>© 2026 María Agustina Sanguinetti Flores. All rights reserved. This document and the described multi-agent system architecture (roles, prohibitions, stage flow, protocols and templates) are the intellectual property of the author. Reproduction, distribution or use, in whole or in part, outside the agreed evaluation purpose is prohibited without express written authorization.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formación Profesional | MAS[F] Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    body{font-family:'Inter',sans-serif;background:#09090b;color:#f4f4f5;overflow-x:hidden}
+    ::selection{background:#4f46e5;color:#fff}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}.reveal-d3{transition-delay:.24s}
+    .nav-blur{backdrop-filter:blur(16px) saturate(180%);-webkit-backdrop-filter:blur(16px) saturate(180%)}
+    ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#09090b}::-webkit-scrollbar-thumb{background:#27272a;border-radius:3px}
+    .card-details{max-height:0;overflow:hidden;opacity:0;transition:max-height .5s cubic-bezier(.16,1,.3,1),opacity .4s ease,padding .4s ease}
+    .card-details.expanded{max-height:1200px;opacity:1}
+    .pulse-dot{animation:pulsedot 2s infinite}
+    @keyframes pulsedot{0%,100%{opacity:1}50%{opacity:.3}}
+    mark{background:rgba(99,102,241,.3);color:#c4b5fd;border-radius:2px;padding:0 2px}
+    .cert-card{transition:opacity .35s ease,transform .35s ease}
+    .cert-card.filtering-out{opacity:0;transform:scale(.96);pointer-events:none;position:absolute;visibility:hidden}
+    .stat-number{font-variant-numeric:tabular-nums}
+    .glow-hover{position:relative;overflow:hidden}
+    .glow-hover::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(99,102,241,.04) 0%,transparent 60%);opacity:0;transition:opacity .4s ease;pointer-events:none}
+    .glow-hover:hover::before{opacity:1}
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-zinc-950/80 border-b border-zinc-800/50">
+    <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="#hero" class="flex items-center gap-2">
+          <span class="text-sm font-semibold tracking-tight text-white">MAS<span class="text-indigo-400">[F]</span></span>
+          <span class="text-[10px] font-mono text-zinc-600 border border-zinc-800 px-2 py-0.5 rounded">Formación</span>
+        </a>
+      </div>
+      <div class="hidden sm:flex items-center gap-5 text-xs font-mono text-zinc-500">
+        <a href="#resumen" class="hover:text-white transition-colors">Resumen</a>
+        <a href="#directorio" class="hover:text-white transition-colors">Directorio</a>
+      </div>
+      <a href="/es/" class="text-xs font-mono text-zinc-400 hover:text-white transition-colors">← Volver al portafolio</a>
+      <a href="/es/manual.html" class="text-xs font-mono text-zinc-400 hover:text-white transition-colors">Manual de Método</a>
+      <a href="/en/certificaciones.en.html" aria-label="Switch to English" class="text-xs font-mono text-zinc-400 hover:text-white transition-colors border border-zinc-700 px-3 py-1.5 rounded-lg">EN</a>
+    </div>
+  </nav>
+
+  <main class="pt-14">
+
+    <!-- HERO -->
+    <section id="hero" class="py-20 sm:py-28 px-6 border-b border-zinc-900 relative overflow-hidden">
+      <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-500/[0.06] rounded-full blur-[100px] pointer-events-none"></div>
+      <div class="absolute bottom-0 right-1/4 w-72 h-72 bg-purple-500/[0.06] rounded-full blur-[80px] pointer-events-none"></div>
+      <div class="max-w-4xl mx-auto text-center space-y-6 relative z-10">
+        <div class="reveal">
+          <div class="inline-block text-[10px] font-mono text-indigo-400 tracking-[0.2em] uppercase mb-4 border border-indigo-500/20 px-4 py-1.5 rounded-full bg-indigo-950/30">// Portafolio de Formación</div>
+        </div>
+        <h1 class="reveal reveal-d1 text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.05]">
+          Desarrollo <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Profesional</span><br class="hidden sm:block"> Acreditado
+        </h1>
+        <p class="reveal reveal-d2 text-zinc-400 text-lg max-w-2xl mx-auto leading-relaxed"><span data-cert-stat="completed">0</span> formaciones finalizadas y <span data-cert-stat="inProgress">0</span> en curso, de un total de <span data-cert-stat="total">0</span>. <span data-cert-stat="official">0</span> oficiales. Datos auditables, no promesas.</p>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section id="resumen" class="py-16 px-6 border-b border-zinc-900">
+      <div class="max-w-6xl mx-auto">
+        <div class="reveal text-center mb-10">
+          <div class="text-xs font-mono text-indigo-400 tracking-widest uppercase mb-2">// Resumen Ejecutivo</div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Métricas del Portafolio</h2>
+        </div>
+        <div class="reveal reveal-d1 grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-zinc-900/30 border border-zinc-800/80 rounded-2xl p-6 text-center hover:border-zinc-700 transition-all glow-hover">
+            <div class="text-3xl sm:text-4xl font-bold text-white stat-number" data-stat-key="total">0</div>
+            <div class="text-xs font-mono text-zinc-500 mt-2 tracking-wider uppercase">Total</div>
+          </div>
+          <div class="bg-zinc-900/30 border border-zinc-800/80 rounded-2xl p-6 text-center hover:border-zinc-700 transition-all glow-hover">
+            <div class="text-3xl sm:text-4xl font-bold text-emerald-400 stat-number" data-stat-key="completed">0</div>
+            <div class="text-xs font-mono text-zinc-500 mt-2 tracking-wider uppercase">Finalizadas</div>
+          </div>
+          <div class="bg-zinc-900/30 border border-zinc-800/80 rounded-2xl p-6 text-center hover:border-zinc-700 transition-all glow-hover">
+            <div class="text-3xl sm:text-4xl font-bold text-indigo-400 stat-number" data-stat-key="inProgress">0</div>
+            <div class="text-xs font-mono text-zinc-500 mt-2 tracking-wider uppercase">En Curso</div>
+          </div>
+          <div class="bg-zinc-900/30 border border-zinc-800/80 rounded-2xl p-6 text-center hover:border-zinc-700 transition-all glow-hover">
+            <div class="text-3xl sm:text-4xl font-bold text-purple-400 stat-number" data-stat-key="official">0</div>
+            <div class="text-xs font-mono text-zinc-500 mt-2 tracking-wider uppercase">Oficiales</div>
+          </div>
+        </div>
+        <!-- Disciplinas -->
+        <div class="reveal reveal-d2 mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          <div class="bg-zinc-950/60 border border-zinc-800/80 rounded-xl p-3 text-center">
+            <div class="text-lg font-bold text-indigo-400" data-category-count="ai">0</div>
+            <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">IA</div>
+          </div>
+          <div class="bg-zinc-950/60 border border-zinc-800/80 rounded-xl p-3 text-center">
+            <div class="text-lg font-bold text-purple-400" data-category-count="pm">0</div>
+            <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">Project Mgmt</div>
+          </div>
+          <div class="bg-zinc-950/60 border border-zinc-800/80 rounded-xl p-3 text-center">
+            <div class="text-lg font-bold text-pink-400" data-category-count="gestion">0</div>
+            <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">Gestión & Tech</div>
+          </div>
+          <div class="bg-zinc-950/60 border border-zinc-800/80 rounded-xl p-3 text-center">
+            <div class="text-lg font-bold text-emerald-400" data-category-count="language">0</div>
+            <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">Idiomas</div>
+          </div>
+          <div class="bg-zinc-950/60 border border-zinc-800/80 rounded-xl p-3 text-center">
+            <div class="text-lg font-bold text-violet-400" data-category-count="coaching">0</div>
+            <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">Coaching</div>
+          </div>
+          <div class="bg-zinc-950/60 border border-zinc-800/80 rounded-xl p-3 text-center">
+            <div class="text-lg font-bold text-cyan-400" data-category-count="social">0</div>
+            <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-wider">Cs. Sociales</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIRECTORIO -->
+    <section id="directorio" class="py-16 px-6">
+      <div class="max-w-6xl mx-auto space-y-8">
+        <div class="reveal">
+          <div class="text-xs font-mono text-indigo-400 tracking-widest uppercase mb-2">// Directorio Completo</div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Formaciones Verificables</h2>
+          <p class="text-zinc-400 text-sm mt-2">Cada entrada enlaza a su diploma y programa original. Datos auditables.</p>
+        </div>
+
+        <!-- FILTERS -->
+        <div class="reveal reveal-d1 space-y-4">
+          <!-- Tabs -->
+          <div class="flex flex-wrap gap-2" id="filterTabs">
+            <button data-filter="all" class="filter-tab px-4 py-2 rounded-xl text-xs font-medium font-mono bg-indigo-600 text-white shadow-lg shadow-indigo-600/20 transition-all">Todas</button>
+            <button data-filter="ai" class="filter-tab px-4 py-2 rounded-xl text-xs font-medium font-mono bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 transition-all">IA</button>
+            <button data-filter="pm" class="filter-tab px-4 py-2 rounded-xl text-xs font-medium font-mono bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 transition-all">Project Mgmt</button>
+            <button data-filter="gestion" class="filter-tab px-4 py-2 rounded-xl text-xs font-medium font-mono bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 transition-all">Gestión</button>
+            <button data-filter="language" class="filter-tab px-4 py-2 rounded-xl text-xs font-medium font-mono bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 transition-all">Idiomas</button>
+            <button data-filter="social" class="filter-tab px-4 py-2 rounded-xl text-xs font-medium font-mono bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 transition-all">Cs. Sociales</button>
+          </div>
+          <!-- Search + Count -->
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <div class="relative flex-1 w-full sm:max-w-xs">
+              <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-zinc-600 text-xs"></i>
+              <input id="searchInput" type="text" placeholder="Buscar por nombre, institución..." class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-indigo-500/50 transition-all font-mono">
+            </div>
+            <div id="resultCount" class="text-[10px] font-mono text-zinc-500 tracking-wider"></div>
+          </div>
+        </div>
+
+        <!-- GRID -->
+        <div id="certGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-4 relative">
+          <!-- Cards rendered by JS -->
+        </div>
+
+        <!-- Empty state -->
+        <div id="emptyState" class="hidden text-center py-16">
+          <div class="text-zinc-600 text-sm font-mono">No se encontraron formaciones</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-10 px-6 bg-zinc-950 border-t border-zinc-900">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="text-sm font-semibold tracking-tight text-white">MAS<span class="text-indigo-400">F</span></span>
+        <span class="text-xs text-zinc-600 font-mono">Formación Profesional</span>
+      </div>
+      <div class="text-[10px] font-mono text-zinc-600">Evidencia ejecutable, no promesas.</div>
+    </div>
+  </footer>
+
+  <script>
+    // ============================================================
+    // DATA
+    // ============================================================
+    const certs = [
+      {
+        name:"AI for App Deployment",discipline:"Inteligencia Artificial",cat:"ai",
+        institution:"Google / Coursera",url:"",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"",end:"",duration:"",topics:"Despliegue de aplicaciones asistido por IA.",
+        tools:"",skills:"",official:true,
+        certLink:"https://drive.google.com/file/d/1G3--tD6_Va7UUOcGrQz_wUZN4Z5H4Yii/view?usp=sharing",
+        language:"Inglés",accredited:"Coursera",credId:"42SMSBW1GKPT",grade:null,status:"Finalizado"
+      },
+      {
+        name:"Google AI Certificado Profesional",discipline:"Inteligencia Artificial",cat:"ai",
+        institution:"Google / Coursera",url:"https://www.coursera.org/professional-certificates/google-ai",country:"N/A",modality:"Online",level:"Especialización",
+        start:"Sep 2026",end:"22/09/2026",duration:"13 hs",
+        topics:"Fundamentos de IA generativa, ingeniería de prompts, planificación ágil de proyectos, investigación y síntesis documental, comunicación ejecutiva, creación de contenido multimedia, análisis y visualización de datos, desarrollo y despliegue de aplicaciones funcionales con vibe coding e IA agéntica.",
+        tools:"Google Gemini, Gemini Canvas, Google AI Studio, NotebookLM, Google Workspace, modelos Imagen y Veo, plataformas de vibe coding y prototipado.",
+        skills:"Alfabetización en IA, ingeniería de prompts, desarrollo de aplicaciones sin código (vibe coding), análisis de datos, automatización de flujos laborales, gestión de proyectos asistida por IA, uso ético y responsable de IA.",
+        official:true,
+        certLink:"https://drive.google.com/file/d/1aiJIyjd6EPL7R0gtIgD41PngXBBAQnQ-/view?usp=drive_link",
+        language:"Inglés",accredited:"Coursera",credId:"Y0ZXYJBR5EOL",grade:null,status:"Finalizado"
+      },
+      {
+        name:"AI for App Building",discipline:"Inteligencia Artificial",cat:"ai",
+        institution:"Google / Coursera",url:"https://www.coursera.org/learn/google-ai-for-app-building",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"Sep 2026",end:"Sep 2026",duration:"2 hs",
+        topics:"Fundamentos de vibe coding e IA agéntica. Desarrollo de aplicaciones funcionales con lenguaje natural. Identificación de oportunidades de automatización. Prototipado y pruebas en Google AI Studio. Diagnóstico y resolución de fallos de código.",
+        tools:"Google AI Studio, Google Gemini, plataformas de vibe coding y prototipado rápido con IA.",
+        skills:"Vibe coding, desarrollo de aplicaciones sin código, auditoría y automatización de flujos laborales, diagnóstico de errores, adopción responsable de IA.",
+        official:true,
+        certLink:"https://drive.google.com/file/d/1DdzXaReQjzCSs38FVOz6e78gUxSP2j_F/view?usp=sharing",
+        language:"Inglés",accredited:"Coursera",credId:"S3FC3QGM07QB",grade:null,status:"Finalizado"
+      },
+      {
+        name:"AI for Data Analysis",discipline:"Inteligencia Artificial",cat:"ai",
+        institution:"Google / Coursera",url:"https://www.coursera.org/learn/google-ai-for-data-analysis",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"Sep 2026",end:"Sep 2026",duration:"1 hs",
+        topics:"Definición de métricas de rendimiento y KPIs con IA. Limpieza y estandarización de datos no estructurados. Generación de fórmulas mediante lenguaje natural. Diseño de gráficos y tableros interactivos.",
+        tools:"Google Sheets, Gemini en Google Sheets, Gemini Canvas, Google Workspace.",
+        skills:"Análisis y depuración de datos, diseño de fórmulas, visualización de datos, definición de KPIs, toma de decisiones basada en datos.",
+        official:true,
+        certLink:"https://drive.google.com/file/d/1P8jadtd5rImvLqzf9pY83o5sqHWm45xz/view?usp=sharing",
+        language:"Inglés",accredited:"Coursera",credId:"51GAOL09JZFZ",grade:null,status:"Finalizado"
+      },
+      {
+        name:"AI for Content Creation",discipline:"Inteligencia Artificial",cat:"ai",
+        institution:"Google / Coursera",url:"https://www.coursera.org/learn/google-ai-for-content-creation",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"Sep 2026",end:"Sep 2026",duration:"2 hs",
+        topics:"Generación de contenido multimedia con modelos Imagen y Veo. Conversión de informes en presentaciones ejecutivas con Gemini Canvas y Google Slides. Pautas de diseño y marca.",
+        tools:"Google Slides, Gemini en Google Slides, Gemini Canvas, modelos Imagen y Veo.",
+        skills:"Generación de contenido visual y multimedia, diseño de presentaciones ejecutivas, estandarización de imagen de marca.",
+        official:true,
+        certLink:"https://drive.google.com/file/d/1ReAOC8iFiNlkqDvUTlnbx8US62HV0mAG/view?usp=drive_link",
+        language:"Inglés",accredited:"Coursera",credId:"2TODVMXVYQI9",grade:null,status:"Finalizado"
+      },
+      {
+        name:"AI for Research and Insights",discipline:"Inteligencia Artificial",cat:"ai",
+        institution:"Google / Coursera",url:"https://www.coursera.org/learn/google-ai-for-research-and-insights",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"Sep 2026",end:"Sep 2026",duration:"1 hs",
+        topics:"Investigación estratégica y síntesis documental con Gemini Deep Research. Centralización de fuentes en NotebookLM. Resúmenes ejecutivos y mapas conceptuales. Simulación de perfiles expertos.",
+        tools:"Gemini Deep Research, NotebookLM, Gemini Gems, Google Workspace.",
+        skills:"Investigación aplicada, síntesis de información compleja, validación de fuentes, gestión del conocimiento con IA.",
+        official:true,
+        certLink:"https://drive.google.com/file/d/1BlfAvcLcGuR6U0CPVMVajo1C9oFA9OIi/view?usp=sharing",
+        language:"Inglés",accredited:"Coursera",credId:"NVQLQTLFY3RR",grade:null,status:"Finalizado"
+      },
+      {
+        name:"AI for Brainstorming and Planning",discipline:"Inteligencia Artificial",cat:"ai",
+        institution:"Google / Coursera",url:"https://www.coursera.org/learn/google-ai-for-brainstorming-and-planning",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"Sep 2026",end:"Sep 2026",duration:"1 hs",
+        topics:"Técnicas de ideación bajo marcos de decisión. Creación ágil de roadmaps y planes de trabajo. Identificación predictiva de riesgos y dependencias con Gemini. Gestión centralizada en NotebookLM.",
+        tools:"Google Gemini, NotebookLM, Google Workspace.",
+        skills:"Planificación de proyectos, gestión de riesgos, técnicas de ideación, diseño de hojas de ruta.",
+        official:true,
+        certLink:"https://drive.google.com/file/d/1NsWpPSYq4IS2vRqOXkyErl_kqZ1EYygh/view?usp=sharing",
+        language:"Inglés",accredited:"Coursera",credId:"FQLW1VWD2UR2",grade:null,status:"Finalizado"
+      },
+      {
+        name:"AI Fundamentals",discipline:"Inteligencia Artificial",cat:"ai",
+        institution:"Google / Coursera",url:"https://www.coursera.org/learn/google-ai-fundamentals",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"Sep 2026",end:"Sep 2026",duration:"2 hs",
+        topics:"Fundamentos de IA generativa y modelos LLM. Ingeniería de prompts estructurada. Prompt chaining. Uso responsable y ético con enfoque human-in-the-loop. Prevención de sesgos.",
+        tools:"Google Gemini, marcos de ingeniería de prompts, Google Workspace.",
+        skills:"Alfabetización en IA, ingeniería de prompts, mitigación de sesgos, ética y responsabilidad digital.",
+        official:true,
+        certLink:"https://drive.google.com/file/d/1fM8RVYVuLbjO_sLArJLPhJt9kpRtCOsD/view?usp=sharing",
+        language:"Inglés",accredited:"Coursera",credId:"MA9CTTKFCAXX",grade:null,status:"Finalizado"
+      },
+      {
+        name:"AI for Writing and Communicating",discipline:"Inteligencia Artificial",cat:"ai",
+        institution:"Google / Coursera",url:"https://www.coursera.org/learn/google-ai-for-writing-and-communicating",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"Sep 2026",end:"Sep 2026",duration:"1 hs",
+        topics:"Síntesis de reuniones con Gemini en Meet. Redacción de comunicaciones con Gemini Canvas. Práctica de oratoria y role-playing con Gemini Live.",
+        tools:"Gemini en Google Meet, Gemini Canvas, Gemini Live, Google Workspace.",
+        skills:"Comunicación corporativa efectiva, redacción ejecutiva, oratoria profesional, simulación de conversaciones difíciles.",
+        official:true,
+        certLink:"https://drive.google.com/file/d/1eodF51a09gXPtzAeuOPBxRRraq3R-vSc/view?usp=sharing",
+        language:"Inglés",accredited:"Coursera",credId:"TAMV54E3ORD6",grade:null,status:"Finalizado"
+      },
+      {
+        name:"micro1 Certified – Project Management Specialist",discipline:"AI",cat:"ai",
+        institution:"micro1",url:"https://www.micro1.ai/experts",country:"N/A",modality:"Online",level:"Examen",
+        start:"Julio 2026",end:"Julio 2026",duration:"1 hs",
+        topics:"Evaluación técnica con IA, metodologías Agile y Scrum, gestión de riesgos, estimación de presupuestos, entrenamiento de modelos de IA.",
+        tools:"Plataforma micro1 (Zara AI), Jira, Trello, entornos de simulación de IA.",
+        skills:"Liderazgo ágil, análisis de riesgos, gestión de presupuestos, comunicación ejecutiva en inglés.",
+        official:true,
+        certLink:"https://drive.google.com/file/d/1QZXVDmKMk0UtszpfX-oXyPd6vkjV-_bz/view?usp=drive_link",
+        language:"Inglés",accredited:"micro1",credId:"N/A",grade:null,status:"Finalizado"
+      },
+      {
+        name:"Generative AI Overview for Project Managers",discipline:"AI",cat:"ai",
+        institution:"Project Management Institute",url:"https://www.pmi.org/shop/p-/elearning/generative-ai-overview-for-project-managers/el083",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"Jun 2026",end:"Jun 2026",duration:"5 hs",
+        topics:"IA generativa aplicada a gestión de proyectos, PMI Talent Triangle, ingeniería de prompts para project managers, biblioteca de herramientas de IA.",
+        tools:"ChatGPT, PMI Infinity, modelos LLM, herramientas de IA para gestión de proyectos.",
+        skills:"Ingeniería de prompts para proyectos, estimación asistida por IA, gestión predictiva de riesgos, documentación ágil.",
+        official:true,
+        certLink:"https://drive.google.com/file/d/1jlZywIK6PlztGuVK2UK6fyaHvITApdgU/view?usp=sharing",
+        language:"Inglés",accredited:"PMI",credId:"Certificate of Course Completion",grade:null,status:"Finalizado"
+      },
+      {
+        name:"Data Landscape of GenAI For Project Managers",discipline:"AI",cat:"ai",
+        institution:"Project Management Institute",url:"https://www.pmi.org/shop/p-/elearning/data-landscape-of-genai-for-project-managers/el106",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"Jun 2026",end:"Jun 2026",duration:"5 hs",
+        topics:"Datos para modelos de IA generativa, gobernanza de datos, riesgos, ciberseguridad, GenAI Data Landscape Canvas, colaboración interdisciplinaria.",
+        tools:"GenAI Data Landscape Canvas, chatbots y plugins, herramientas de gobernanza y calidad de datos.",
+        skills:"Gobernanza y seguridad de datos, evaluación de calidad de datos para IA, mitigación de riesgos de IA.",
+        official:true,
+        certLink:"https://drive.google.com/file/d/1n0k1UoffAlYqfe0ccMU3Ot7deuUYdDPJ/view?usp=sharing",
+        language:"Inglés",accredited:"PMI",credId:"Certificate of Course Completion",grade:null,status:"Finalizado"
+      },
+      {
+        name:"AI Project Management: From Strategy to Results",discipline:"AI + PM",cat:"ai",
+        institution:"The Johns Hopkins University",url:"",country:"N/A",modality:"Online",level:"Curso",
+        start:"2025",end:"2025",duration:"",
+        topics:"",tools:"",skills:"",
+        official:true,certLink:"",language:"Inglés",accredited:"Coursera",credId:"QZP4NES89LG",grade:null,status:"Finalizado"
+      },
+      {
+        name:"Generative AI: Business Transformation and Career Growth",discipline:"Inteligencia Artificial",cat:"ai",
+        institution:"IBM / Coursera",url:"https://www.coursera.org/learn/generative-ai-business-and-career-growth/home/module/2",country:"N/A",modality:"Online",level:"Curso",
+        start:"6/3/2025",end:"Finalizado",duration:"",
+        topics:"",tools:"",skills:"",
+        official:false,certLink:"",language:"Español",accredited:"Coursera",credId:"",grade:null,status:"Finalizado"
+      },
+      {
+        name:"AI Agents in LangGraph",discipline:"Inteligencia Artificial",cat:"ai",
+        institution:"DeepLearning.AI",url:"https://www.deeplearning.ai/short-courses/ai-agents-in-langgraph/",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"9/2/2025",end:"En proceso",duration:"En proceso",
+        topics:"Introducción a LangGraph. Construcción de agentes con Python y LLM. Búsqueda agéntica. Persistencia y gestión de estados. Integración human-in-the-loop. Agente para redacción de ensayos.",
+        tools:"LangChain, LangGraph, Python, modelos LLM, herramientas de búsqueda agéntica.",
+        skills:"Construcción de agentes personalizados, LangGraph, búsqueda agéntica, gestión de estados, integración humano-IA.",
+        official:false,certLink:"",language:"Inglés",accredited:"Coursera",credId:"",grade:null,status:"En curso"
+      },
+      {
+        name:"OpenAI GPTs: Creating Your Own Custom AI Assistants",discipline:"Inteligencia Artificial",cat:"ai",
+        institution:"Vanderbilt University",url:"https://www.coursera.org/learn/openai-custom-gpts",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"15/2/2025",end:"En proceso",duration:"En proceso",
+        topics:"Personalización de GPT para dominios específicos. Integración de documentos. Diseño de interacciones humano-AI. Caso práctico: GPT para gestión de viajes.",
+        tools:"OpenAI GPT, APIs, bases de datos, frameworks de diseño conversacional.",
+        skills:"Entrenamiento de GPT, asistentes personalizados, diseño de interacciones, implementación de soluciones prácticas.",
+        official:false,certLink:"",language:"Inglés",accredited:"Coursera",credId:"",grade:null,status:"En curso"
+      },
+      {
+        name:"ChatGPT & Zapier: Agentic AI for Everyone",discipline:"Inteligencia Artificial",cat:"ai",
+        institution:"Vanderbilt University",url:"https://www.coursera.org/learn/agentic-ai-chatgpt-zapier",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"31/1/2025",end:"En proceso",duration:"En proceso",
+        topics:"IA Agéntica: combinación de IA Generativa con acciones. Creación de agentes para automatizar tareas (Gmail, Sheets, Salesforce, etc.). Agente de Gastos de Viaje.",
+        tools:"ChatGPT, Zapier, Gmail, Google Sheets, herramientas integradas.",
+        skills:"Creación de agentes de IA, integración ChatGPT-Zapier, automatización de procesos, productividad con IA.",
+        official:false,certLink:"",language:"Inglés",accredited:"Coursera",credId:"",grade:null,status:"En curso"
+      },
+      {
+        name:"Seminario Gestión de la Tecnología",discipline:"Gestión / Tecnología",cat:"gestion",
+        institution:"Universidad de Buenos Aires - UBA",url:"",country:"Argentina",modality:"Online",level:"Seminario",
+        start:"7/1/2025",end:"27/2/2025",duration:"64 hs",
+        topics:"Gestión del desarrollo tecnológico e innovación. Teorías sobre tecnología, economía del conocimiento y transferencia tecnológica. Gestión de políticas públicas. Metodologías ágiles (Design Thinking, Scrum, PMI). Tecnologías disruptivas: IA, blockchain, IoT. Talleres en Python, R, SQL, Power BI, Tableau.",
+        tools:"Python, R, SQL, Power BI, Tableau, Design Thinking, Scrum, Marco Lógico, PMI.",
+        skills:"Gestión del desarrollo tecnológico, políticas públicas, metodologías ágiles, análisis de datos, desarrollo de apps, interpretación crítica del impacto tecnológico.",
+        official:true,certLink:"",language:"Español",accredited:"Universidad de Buenos Aires",credId:"N/A",grade:null,status:"Finalizado"
+      },
+      {
+        name:"Agile Project Management",discipline:"Project Management",cat:"pm",
+        institution:"Google / Coursera",url:"https://www.coursera.org/professional-certificates/google-project-management",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"7/1/2025",end:"13/1/2025",duration:"20 hs",
+        topics:"Fundamentos de Agile, Scrum, Kanban, backlogs, estimación, seguimiento, herramientas y técnicas.",
+        tools:"Jira, Trello, Azure DevOps, Planning Poker, Story Points, burndown charts.",
+        skills:"Gestión ágil, liderazgo ágil, priorización, resolución de problemas, adaptabilidad organizacional.",
+        official:false,certLink:"https://drive.google.com/file/d/1pBlARqj372oC0aSJI7ie5loyQC10IQiN/view?usp=sharing",language:"Inglés",accredited:"Coursera",credId:"A3DIICPSM0AGID",grade:88.5,status:"Finalizado"
+      },
+      {
+        name:"Generative AI: Prompt Engineering",discipline:"Inteligencia Artificial",cat:"ai",
+        institution:"IBM / Coursera",url:"https://www.coursera.org/professional-certificates/ibm-generative-ai-engineering",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"2/12/2024",end:"8/12/2024",duration:"7 hs",
+        topics:"Fundamentos de ingeniería de prompts, diseño de prompts efectivos para modelos generativos, técnicas de optimización de respuestas.",
+        tools:"OpenAI GPT, ChatGPT, frameworks de prompts, técnicas de evaluación.",
+        skills:"Creación de prompts efectivos, optimización de interacciones con IA, aplicación práctica (automatización, contenido, análisis).",
+        official:false,certLink:"https://drive.google.com/file/d/1FJNj-TrSyKEA4PZaCo7dvWAhIp7rA2dc/view?usp=drive_link",language:"Inglés",accredited:"Coursera",credId:"N/A",grade:80.35,status:"Finalizado"
+      },
+      {
+        name:"Capstone: Applying Project Management in the Real World",discipline:"Project Management",cat:"pm",
+        institution:"Google / Coursera",url:"https://www.coursera.org/learn/applying-project-management/resources/ofvLT",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"8/1/2025",end:"28/1/2025",duration:"43 hs",
+        topics:"Aplicación práctica de gestión de proyectos en caso real, resolución de problemas complejos, entrega completa de iniciación a cierre.",
+        tools:"Gantt charts, diagramas de red, seguimiento de presupuestos, gestión de riesgos.",
+        skills:"Integración de conocimientos, pensamiento crítico, toma de decisiones basada en datos, presentación a stakeholders.",
+        official:false,certLink:"https://drive.google.com/file/d/1ZqpL7vLhDJClSxbUPU3VdT_k3LRcj3jG/view?usp=drive_link",language:"Inglés",accredited:"Coursera",credId:"Q1BTFLYJOY0B",grade:94.37,status:"Finalizado"
+      },
+      {
+        name:"Project Execution: Running the Project",discipline:"Project Management",cat:"pm",
+        institution:"Google / Coursera",url:"https://www.coursera.org/professional-certificates/google-project-management",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"1/12/2024",end:"7/1/2025",duration:"24 hs",
+        topics:"Ejecución efectiva, gestión de equipos, seguimiento del progreso, manejo de cambios y resolución de problemas.",
+        tools:"Tableros Kanban, Asana, Trello, técnicas de comunicación y gestión de riesgos.",
+        skills:"Liderazgo de equipos, gestión del tiempo, adaptabilidad, resolución de conflictos.",
+        official:false,certLink:"https://drive.google.com/file/d/1OQUWYKG1tJqLvrYKrpL10GVHziuRQieC/view?usp=drive_link",language:"Inglés",accredited:"Coursera",credId:"UU1WAZ10M9Q8",grade:88.59,status:"Finalizado"
+      },
+      {
+        name:"Project Planning: Putting It All Together",discipline:"Project Management",cat:"pm",
+        institution:"Google / Coursera",url:"https://www.coursera.org/professional-certificates/google-project-management",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"1/12/2024",end:"7/12/2024",duration:"26 hs",
+        topics:"Planificación integral, definición de alcance, cronogramas, asignación de recursos y presupuestos.",
+        tools:"Gantt, PERT, CPM, Microsoft Project, Smartsheet.",
+        skills:"Planificación estratégica, gestión de recursos, estimación de costos y tiempos.",
+        official:false,certLink:"https://drive.google.com/file/d/1VUY50iSY7uLJhpv9vkRuDfg2DZKIrq2K/view?usp=drive_link",language:"Inglés",accredited:"Coursera",credId:"08U90Z5CSCOS",grade:84.5,status:"Finalizado"
+      },
+      {
+        name:"Project Initiation: Starting a Successful Project",discipline:"Project Management",cat:"pm",
+        institution:"Google / Coursera",url:"https://www.coursera.org/professional-certificates/google-project-management",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"27/11/2024",end:"1/12/2024",duration:"17 hs",
+        topics:"Iniciación de proyectos, definición de objetivos, stakeholders, charters, análisis de viabilidad.",
+        tools:"Análisis de stakeholders, matrices de riesgos, SMART goals.",
+        skills:"Identificación de necesidades, comunicación con stakeholders, bases sólidas para ejecución.",
+        official:false,certLink:"https://drive.google.com/file/d/1XUWMt766bdNIjX2HumUpJvBFctpFrmvA/view?usp=drive_link",language:"Inglés",accredited:"Coursera",credId:"GLA4CES49NGZ",grade:91.91,status:"Finalizado"
+      },
+      {
+        name:"Google Project Management",discipline:"Project Management",cat:"pm",
+        institution:"Google / Coursera",url:"https://www.coursera.org/professional-certificates/google-project-management",country:"N/A",modality:"Online",level:"Especialización",
+        start:"18/11/2024",end:"28/1/2025",duration:"100 hs",
+        topics:"Fundamentos de gestión de proyectos, metodologías ágiles y tradicionales, gestión de equipos, entrega exitosa.",
+        tools:"Google Sheets, Docs, Slides, Asana, Trello, técnicas de planificación y seguimiento.",
+        skills:"Gestión integral, liderazgo, comunicación efectiva, metodologías ágiles y tradicionales.",
+        official:true,certLink:"https://drive.google.com/file/d/1ValX28wR1jj6dBdTTr9Iog3fr19lEXTl/view?usp=sharing",language:"Inglés",accredited:"Coursera",credId:"1FN44PS6LFFO",grade:null,status:"Finalizado"
+      },
+      {
+        name:"Foundations of Project Management",discipline:"Project Management",cat:"pm",
+        institution:"Google / Coursera",url:"https://www.coursera.org/professional-certificates/google-project-management",country:"N/A",modality:"Online",level:"Curso corto",
+        start:"18/11/2024",end:"27/11/2024",duration:"12 hs",
+        topics:"Introducción, ciclo de vida, roles, fundamentos de metodologías ágiles y tradicionales.",
+        tools:"Gantt, WBS, Microsoft Project, Trello.",
+        skills:"Ciclo de vida, stakeholders, planificación inicial, comunicación efectiva.",
+        official:false,certLink:"https://drive.google.com/file/d/1ijfGgaLEeTd2-vf7AwaWEIoDPm6G8DED/view?usp=drive_link",language:"Inglés",accredited:"Coursera",credId:"JG2Q4PIRHQ0U",grade:91.53,status:"Finalizado"
+      },
+      {
+        name:"Gestión de la tecnología, la innovación y el conocimiento",discipline:"Gestión / Tecnología",cat:"gestion",
+        institution:"Universidad de Buenos Aires - UBA",url:"https://www.linkedin.com/company/105067046/admin/dashboard/",country:"Argentina",modality:"Presencial/Online",level:"Investigación",
+        start:"15/3/2024",end:"15/2/2025",duration:"11 meses",
+        topics:"Desarrollo tecnológico con impacto social, economía del conocimiento, gestión de proyectos, vinculación tecnología y ciencias sociales. I+D+I",
+        tools:"Análisis y ciencia de datos, metodologías de gestión de proyectos, herramientas tecnológicas para investigación.",
+        skills:"Investigación aplicada, proyectos con enfoque social, producción de conocimiento interdisciplinario.",
+        official:true,certLink:"",language:"Español",accredited:"Universidad de Buenos Aires",credId:"N/A",grade:null,status:"Finalizado"
+      },
+      {
+        name:"English for Academic Purposes",discipline:"English Language",cat:"language",
+        institution:"Einstein College of Australia",url:"https://www.einsteincollege.vic.edu.au",country:"Australia",modality:"Presencial",level:"Curso",
+        start:"4/4/2023",end:"28/10/2023",duration:"6 meses",
+        topics:"Inglés académico: vocabulario, gramática, lectura, escritura, expresión oral, comprensión auditiva. Presentaciones, ensayos, informes.",
+        tools:"Técnicas de estudio, estilo APA, estrategias para debates y presentaciones.",
+        skills:"Comunicación en inglés académico, redacción de ensayos, comprensión de textos, preparación para estudios superiores.",
+        official:true,certLink:"https://drive.google.com/file/d/1c7kjHiiOK98MLF-nHjAfEa9NASbL9ZZs/view?usp=drive_link",language:"Inglés",accredited:"CRICOS 097527M",credId:"097527M",grade:93,status:"Finalizado"
+      },
+      {
+        name:"General English Level 4",discipline:"English Language",cat:"language",
+        institution:"Einstein College of Australia",url:"https://www.einsteincollege.vic.edu.au",country:"Australia",modality:"Presencial",level:"Curso",
+        start:"7/11/2022",end:"24/3/2023",duration:"6 meses",
+        topics:"Inglés académico: vocabulario, gramática, lectura, escritura, expresión oral, comprensión auditiva.",
+        tools:"Técnicas de estudio, estilo APA, estrategias para debates.",
+        skills:"Comunicación en inglés académico, redacción, comprensión de textos y conferencias.",
+        official:true,certLink:"https://drive.google.com/file/d/1OF7qn6nl7HMpp7d2AnwTp9vipKY8dzEz/view?usp=drive_link",language:"Inglés",accredited:"CRICOS 097526A",credId:"097526A",grade:92,status:"Finalizado"
+      },
+      {
+        name:"Coaching Profesional",discipline:"Coaching",cat:"social",
+        institution:"Instituto de Capacitación Profesional - ICP",url:"https://www.icp.edu.ar",country:"Argentina",modality:"Presencial",level:"Tecnicatura",
+        start:"6/7/2011",end:"5/7/2013",duration:"2 años",
+        topics:"Ontología del lenguaje, herramientas de coaching (preguntas poderosas, escucha activa), autoconocimiento y liderazgo emocional.",
+        tools:"Modelos de conversación, escucha activa, planificación y acción.",
+        skills:"Facilitación de procesos de cambio, comunicación empática, liderazgo ontológico y colaborativo.",
+        official:true,certLink:"https://drive.google.com/file/d/12lhYx-Aq5f8NuG4hXys4Uj7eflhJoRV9/view?usp=sharing",language:"Español",accredited:"ICP",credId:"593925",grade:90.08,status:"Finalizado"
+      },
+      {
+        name:"Ciclo Básico Común",discipline:"Ciencia Política",cat:"social",
+        institution:"Universidad de Buenos Aires - UBA",url:"https://www.uba.ar",country:"Argentina",modality:"Presencial",level:"Pre-grado",
+        start:"4/3/2010",end:"30/11/2011",duration:"1 año",
+        topics:"Introducción a ciencias sociales, teoría política, sistemas políticos, Estado, poder y democracia.",
+        tools:"Métodos de investigación social, análisis de datos políticos.",
+        skills:"Pensamiento crítico, análisis de contextos políticos, redacción académica.",
+        official:true,certLink:"",language:"Español",accredited:"Universidad de Buenos Aires",credId:"N/A",grade:70.8,status:"Finalizado"
+      },
+      {
+        name:"Instructora en Desarrollo",discipline:"Desarrollo social",cat:"social",
+        institution:"CICD",url:"https://www.cicd-volunteerinafrica.org",country:"Reino Unido",modality:"Presencial",level:"Instructorado",
+        start:"30/9/2008",end:"30/3/2009",duration:"6 meses",
+        topics:"Estudios globales, liderazgo, trabajo en equipo, comunicación efectiva. Viajes de exploración y acciones comunitarias. Expresión creativa.",
+        tools:"Proyectos comunitarios: agricultura sostenible, construcción de escuelas, capacitación de maestros.",
+        skills:"Liderazgo, trabajo en equipo, resolución de problemas, comunicación intercultural.",
+        official:true,certLink:"https://drive.google.com/file/d/1LcACoPciAd6obIWXj0t9c5oQj2BQq8oq/view?usp=sharing",language:"Inglés / Portugués",accredited:"BAC",credId:"N/A",grade:null,status:"Finalizado"
+      },
+      {
+        name:"Gaia Environmental Course",discipline:"Desarrollo social",cat:"social",
+        institution:"CICD",url:"https://www.cicd-volunteerinafrica.org",country:"Reino Unido",modality:"Presencial",level:"Curso",
+        start:"2/4/2008",end:"30/9/2008",duration:"4 meses",
+        topics:"Proyectos de reciclaje, mantenimiento de edificios, jardinería orgánica y marketing. Cambio climático, justicia ambiental, teoría Gaia.",
+        tools:"Recolección de ropa, mantenimiento de jardines, promoción.",
+        skills:"Trabajo en equipo, gestión de proyectos sostenibles, conciencia ambiental, habilidades prácticas.",
+        official:true,certLink:"https://drive.google.com/file/d/1EEIblVZSGcpH1CIynKPq9TwbbgCLmg0z/view?usp=sharing",language:"Inglés",accredited:"BAC",credId:"N/A",grade:null,status:"Finalizado"
+      },
+      {
+        name:"Licenciatura en Ciencia Política",discipline:"Ciencia Política",cat:"social",
+        institution:"Universidad de Buenos Aires - UBA",url:"https://www.uba.ar",country:"Argentina",modality:"Presencial",level:"Grado",
+        start:"15/3/2014",end:"19/12/2019",duration:"4 años",
+        topics:"Teoría Política, Sistemas Políticos, Relaciones Internacionales, Políticas Públicas, Economía Política, Derecho Constitucional, Análisis Electoral, Gobernanza, Política Ambiental, Género y Política.",
+        tools:"Archivos históricos, análisis de discursos, tablas y gráficos, muestreo estratificado, cuestionarios, fichas bibliográficas.",
+        skills:"Análisis cuantitativo, investigación cualitativa, redacción académica, pensamiento crítico, evaluación de políticas, negociación, liderazgo.",
+        official:true,certLink:"https://drive.google.com/file/d/18SekXVzRsdbso2Zh3yKSDU2WxYW9umcb/view?usp=drive_link",language:"Español",accredited:"Universidad de Buenos Aires",credId:"1006964",grade:70.37,status:"Finalizado"
+      }
+    ];
+
+    const normalizeStatus = status => String(status).trim().toLowerCase().replace(/[\s-]+/g, '_');
+    const completedCount = certs.filter(c => ['completed', 'finalizado', 'finalizada'].includes(normalizeStatus(c.status))).length;
+    const inProgressCount = certs.filter(c => ['in_progress', 'ongoing', 'en_curso'].includes(normalizeStatus(c.status))).length;
+    const certificationStats = {
+      total: certs.length,
+      completed: completedCount,
+      inProgress: inProgressCount,
+      official: certs.filter(c => c.official === true).length
+    };
+    const isCoaching = cert => cert.cat === 'social' && /coaching/i.test(cert.discipline);
+    const categoryCounts = certs.reduce((counts, cert) => {
+      if (isCoaching(cert)) return counts;
+      counts[cert.cat] = (counts[cert.cat] || 0) + 1;
+      return counts;
+    }, {});
+    categoryCounts.coaching = certs.filter(isCoaching).length;
+
+    document.querySelectorAll('[data-cert-stat]').forEach(el => {
+      el.textContent = certificationStats[el.dataset.certStat];
+    });
+    document.querySelectorAll('.stat-number[data-stat-key]').forEach(el => {
+      el.dataset.target = certificationStats[el.dataset.statKey];
+    });
+    document.querySelectorAll('[data-category-count]').forEach(el => {
+      el.textContent = categoryCounts[el.dataset.categoryCount] || 0;
+    });
+
+    // ============================================================
+    // CATEGORY COLORS
+    // ============================================================
+    const catColors = {
+      ai:      { border:'border-indigo-500/30', text:'text-indigo-400', bg:'bg-indigo-950/40', dot:'bg-indigo-500', label:'IA' },
+      pm:      { border:'border-purple-500/30', text:'text-purple-400', bg:'bg-purple-950/40', dot:'bg-purple-500', label:'Project Mgmt' },
+      gestion: { border:'border-pink-500/30', text:'text-pink-400', bg:'bg-pink-950/40', dot:'bg-pink-500', label:'Gestión' },
+      language:{ border:'border-emerald-500/30', text:'text-emerald-400', bg:'bg-emerald-950/40', dot:'bg-emerald-500', label:'Idiomas' },
+      social:  { border:'border-violet-500/30', text:'text-violet-400', bg:'bg-violet-950/40', dot:'bg-violet-500', label:'Cs. Sociales' }
+    };
+
+    // ============================================================
+    // RENDER
+    // ============================================================
+    const grid = document.getElementById('certGrid');
+    const countEl = document.getElementById('resultCount');
+    const emptyEl = document.getElementById('emptyState');
+    const searchInput = document.getElementById('searchInput');
+
+    function truncate(str, len=120) {
+      if (!str) return '';
+      return str.length > len ? str.substring(0, len) + '…' : str;
+    }
+
+    function normalizeUrl(url) {
+      if (!url) return '';
+      if (url.startsWith('http://') || url.startsWith('https://')) return url;
+      if (url.startsWith('www.')) return 'https://' + url;
+      return '';
+    }
+
+    function renderCards(filtered) {
+      grid.innerHTML = '';
+      if (filtered.length === 0) {
+        emptyEl.classList.remove('hidden');
+        countEl.textContent = '0 FORMACIONES';
+        return;
+      }
+      emptyEl.classList.add('hidden');
+      countEl.textContent = filtered.length + ' FORMACIONES';
+
+      filtered.forEach((c, i) => {
+        const cc = catColors[c.cat] || catColors.ai;
+        const isFinalized = c.status === 'Finalizado';
+        const hasGrade = c.grade !== null && c.grade !== undefined;
+        const certUrl = normalizeUrl(c.certLink);
+        const courseUrl = normalizeUrl(c.url);
+
+        const card = document.createElement('div');
+        card.className = `cert-card bg-zinc-900/30 border border-zinc-800/80 rounded-2xl p-5 sm:p-6 hover:border-zinc-700 transition-all relative overflow-hidden glow-hover`;
+        card.style.transitionDelay = (i % 6) * 0.04 + 's';
+
+        card.innerHTML = `
+          <div class="absolute top-0 right-0 w-32 h-32 ${cc.dot}/[0.04] rounded-full blur-3xl pointer-events-none"></div>
+          <div class="relative z-10 space-y-3">
+            <!-- Header: badges -->
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-[10px] font-mono ${cc.bg} border ${cc.border} ${cc.text} px-2 py-0.5 rounded-md">${cc.label}</span>
+              ${c.official ? '<span class="text-[10px] font-mono bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 px-2 py-0.5 rounded-md">Oficial</span>' : ''}
+              ${isFinalized
+                ? '<span class="text-[10px] font-mono bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 px-2 py-0.5 rounded-md flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-emerald-400 inline-block"></span>Finalizado</span>'
+                : '<span class="text-[10px] font-mono bg-indigo-950/40 border border-indigo-500/30 text-indigo-300 px-2 py-0.5 rounded-md flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-indigo-400 inline-block pulse-dot"></span>En curso</span>'
+              }
+              ${hasGrade ? `<span class="text-[10px] font-mono bg-zinc-950/60 border border-zinc-800/80 text-zinc-300 px-2 py-0.5 rounded-md">${c.grade}%</span>` : ''}
+            </div>
+
+            <!-- Title -->
+            <div>
+              <h3 class="text-base sm:text-lg font-semibold text-white leading-snug">${c.name}</h3>
+              <p class="text-xs text-zinc-500 mt-0.5">${c.institution}</p>
+            </div>
+
+            <!-- Meta row -->
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] font-mono text-zinc-500">
+              ${c.level ? `<span class="flex items-center gap-1"><i class="fa-solid fa-layer-group text-[9px] text-zinc-600"></i>${c.level}</span>` : ''}
+              ${c.duration ? `<span class="flex items-center gap-1"><i class="fa-regular fa-clock text-[9px] text-zinc-600"></i>${c.duration}</span>` : ''}
+              ${c.language ? `<span class="flex items-center gap-1"><i class="fa-solid fa-globe text-[9px] text-zinc-600"></i>${c.language}</span>` : ''}
+              ${c.country && c.country !== 'N/A' ? `<span class="flex items-center gap-1"><i class="fa-solid fa-location-dot text-[9px] text-zinc-600"></i>${c.country}</span>` : ''}
+            </div>
+
+            <!-- Topics preview -->
+            ${c.topics ? `<p class="text-xs text-zinc-500 leading-relaxed">${truncate(c.topics, 140)}</p>` : ''}
+
+            <!-- Links -->
+            <div class="flex flex-wrap items-center gap-3 pt-1">
+              ${certUrl ? `<a href="${certUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[11px] font-mono text-indigo-400 hover:text-indigo-300 transition-colors"><i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>Diploma</a>` : ''}
+              ${courseUrl ? `<a href="${courseUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[11px] font-mono text-purple-400 hover:text-purple-300 transition-colors"><i class="fa-solid fa-link text-[9px]"></i>Programa</a>` : ''}
+            </div>
+
+            <!-- Expand toggle -->
+            ${(c.topics || c.tools || c.skills) ? `
+            <button class="expand-btn flex items-center gap-1.5 text-[10px] font-mono text-zinc-600 hover:text-zinc-400 transition-colors pt-1" aria-expanded="false" onclick="toggleExpand(this)">
+              <i class="fa-solid fa-chevron-down text-[8px] transition-transform duration-300"></i><span class="expand-label">Ver detalle completo</span>
+            </button>
+            <div class="card-details space-y-3">
+              <div class="pt-3 border-t border-zinc-800/60 space-y-3">
+                ${c.topics ? `<div><div class="text-[10px] font-mono ${cc.text} tracking-wider uppercase mb-1">// Temas Clave</div><p class="text-xs text-zinc-400 leading-relaxed">${c.topics}</p></div>` : ''}
+                ${c.tools ? `<div><div class="text-[10px] font-mono text-purple-400 tracking-wider uppercase mb-1">// Herramientas</div><p class="text-xs text-zinc-400 leading-relaxed">${c.tools}</p></div>` : ''}
+                ${c.skills ? `<div><div class="text-[10px] font-mono text-emerald-400 tracking-wider uppercase mb-1">// Habilidades</div><p class="text-xs text-zinc-400 leading-relaxed">${c.skills}</p></div>` : ''}
+                ${c.credId && c.credId !== 'N/A' ? `<div class="flex items-center gap-2"><span class="text-[10px] font-mono text-zinc-600 tracking-wider uppercase">// Credencial</span><span class="text-[10px] font-mono bg-zinc-950/60 border border-zinc-800/80 text-zinc-400 px-2 py-0.5 rounded-md">${c.credId}</span></div>` : ''}
+                ${c.accredited ? `<div class="flex items-center gap-2"><span class="text-[10px] font-mono text-zinc-600 tracking-wider uppercase">// Acreditado por</span><span class="text-[10px] font-mono text-zinc-400">${c.accredited}</span></div>` : ''}
+              </div>
+            </div>
+            ` : ''}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      // Trigger reveal for new cards
+      setTimeout(() => {
+        document.querySelectorAll('.cert-card').forEach(el => {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        });
+      }, 50);
+    }
+
+    function toggleExpand(btn) {
+      const details = btn.nextElementSibling;
+      const icon = btn.querySelector('i');
+      const isExpanded = details.classList.contains('expanded');
+      details.classList.toggle('expanded');
+      icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+      btn.setAttribute('aria-expanded', String(!isExpanded));
+      btn.querySelector('.expand-label').textContent = isExpanded ? 'Ver detalle completo' : 'Ocultar detalle';
+    }
+
+    // ============================================================
+    // FILTER LOGIC
+    // ============================================================
+    let activeFilter = 'all';
+    let searchQuery = '';
+
+    function applyFilters() {
+      let filtered = certs;
+      if (activeFilter !== 'all') {
+        filtered = filtered.filter(c => c.cat === activeFilter);
+      }
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        filtered = filtered.filter(c =>
+          c.name.toLowerCase().includes(q) ||
+          c.institution.toLowerCase().includes(q) ||
+          c.discipline.toLowerCase().includes(q) ||
+          (c.topics && c.topics.toLowerCase().includes(q)) ||
+          (c.tools && c.tools.toLowerCase().includes(q)) ||
+          (c.skills && c.skills.toLowerCase().includes(q))
+        );
+      }
+      renderCards(filtered);
+    }
+
+    // Tab clicks
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        activeFilter = tab.dataset.filter;
+        document.querySelectorAll('.filter-tab').forEach(t => {
+          t.className = 'filter-tab px-4 py-2 rounded-xl text-xs font-medium font-mono bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 transition-all';
+        });
+        tab.className = 'filter-tab px-4 py-2 rounded-xl text-xs font-medium font-mono bg-indigo-600 text-white shadow-lg shadow-indigo-600/20 transition-all';
+        applyFilters();
+      });
+    });
+
+    // Search
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim();
+      applyFilters();
+    });
+
+    // Initial render
+    renderCards(certs);
+
+    // ============================================================
+    // SCROLL REVEAL
+    // ============================================================
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // ============================================================
+    // COUNTER ANIMATION
+    // ============================================================
+    const counterObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.target);
+          let current = 0;
+          const duration = 1200;
+          const step = Math.ceil(target / (duration / 16));
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(timer); }
+            el.textContent = current;
+          }, 16);
+          counterObs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stat-number').forEach(el => counterObs.observe(el));
+  </script>
+</body>
+</html>

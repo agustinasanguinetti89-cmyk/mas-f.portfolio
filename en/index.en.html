@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>María Agustina Sanguinetti Flores — Digital PM & AI Integrator</title>
+  <meta name="description" content="Executive portfolio — Governance of digital projects, multi-agent AI integration and auditable execution.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #09090b; color: #f4f4f5; overflow-x: hidden; }
+    ::selection { background: #4f46e5; color: #fff; }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+
+    .reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(30px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    #hero-canvas { position: absolute; inset: 0; z-index: 0; }
+    .nav-blur { backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); }
+
+    .tab-content { animation: fadeTab 0.3s ease; }
+    @keyframes fadeTab { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    @keyframes glow-pulse { 0%,100%{opacity:0.4} 50%{opacity:0.8} }
+    .glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #09090b; }
+    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- ═══ NAV ═══ -->
+  <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 nav-blur bg-zinc-950/70 border-b border-zinc-800/50 transition-all duration-300 -translate-y-full">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#hero" class="text-sm font-semibold tracking-tight text-white">MAS<span class="text-indigo-400">F</span></a>
+      <div class="hidden sm:flex items-center gap-6 text-xs font-mono text-zinc-400">
+        <a href="#cases" class="hover:text-white transition-colors">Cases</a>
+        <a href="#method" class="hover:text-white transition-colors">Method</a>
+        <a href="#timeline" class="hover:text-white transition-colors">Track Record</a>
+        <a href="#refs" class="hover:text-white transition-colors">References</a>
+        <a href="#audit" class="hover:text-white transition-colors">Credentials</a>
+      </div>
+      <a href="/en/manual.en.html" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-indigo-400 hover:text-indigo-300 transition-colors border border-indigo-500/30 px-3 py-1.5 rounded-lg">Manual →</a>
+      <a href="/es/" aria-label="Switch to Spanish" class="text-xs font-mono text-zinc-400 hover:text-white transition-colors border border-zinc-700 px-3 py-1.5 rounded-lg">ES</a>
+    </div>
+  </nav>
+
+  <main class="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col">
+
+    <!-- ═══ HERO 3D ═══ -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <canvas id="hero-canvas"></canvas>
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/[0.07] rounded-full blur-[120px] pointer-events-none glow-pulse"></div>
+      <div class="absolute bottom-1/3 right-1/4 w-80 h-80 bg-purple-500/[0.07] rounded-full blur-[100px] pointer-events-none glow-pulse" style="animation-delay:1.5s"></div>
+
+      <nav aria-label="Language selector" class="absolute top-6 right-6 z-20 inline-flex items-center gap-1 rounded-full border border-white/10 bg-zinc-950/60 p-1.5 shadow-lg shadow-black/20 backdrop-blur-xl">
+        <span aria-current="page" class="rounded-full bg-indigo-500/15 px-3 py-1.5 text-[11px] font-mono font-medium text-indigo-200">EN</span>
+        <a href="/es/" aria-label="Switch to Spanish" class="rounded-full px-3 py-1.5 text-[11px] font-mono text-zinc-400 transition-colors hover:bg-white/10 hover:text-white">ES</a>
+      </nav>
+
+      <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+        <div class="reveal">
+          <div class="inline-block text-[10px] sm:text-xs font-mono text-indigo-400 tracking-[0.2em] uppercase mb-6 border border-indigo-500/20 px-4 py-1.5 rounded-full bg-indigo-950/30">
+            Digital Project Manager &amp; AI Integrator
+          </div>
+        </div>
+        <h1 class="reveal reveal-d1 text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.05]">
+          María Agustina<br>
+          <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Sanguinetti Flores</span>
+        </h1>
+        <p class="reveal reveal-d2 mt-6 text-base sm:text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+          Governance of digital projects, multi-agent AI integration and auditable execution. More than a decade of operating across six countries under non-negotiable standards.
+        </p>
+        <div class="reveal reveal-d3 mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#cases" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-all shadow-lg shadow-indigo-600/20">
+            Audit Evidence <span class="text-indigo-200">↓</span>
+          </a>
+          <a href="/en/manual.en.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-zinc-900 border border-zinc-700 hover:border-zinc-600 text-zinc-300 font-medium text-sm transition-all">
+            Method Manual <span class="text-zinc-500">→</span>
+          </a>
+        </div>
+        <div class="reveal reveal-d4 mt-16 flex items-center justify-center gap-8 text-xs font-mono text-zinc-500">
+          <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Available for projects</span>
+          <span>Valencia, Spain 🇪🇸</span>
+        </div>
+      </div>
+
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+        <div class="w-5 h-8 rounded-full border border-zinc-700 flex items-start justify-center p-1">
+          <div class="w-1 h-2 rounded-full bg-zinc-500 animate-bounce"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CORE CASES ═══ -->
+    <section id="cases" class="py-24 px-6 bg-zinc-950 border-t border-zinc-900">
+      <div class="max-w-6xl mx-auto space-y-16">
+        <div class="space-y-4 text-center reveal">
+          <div class="inline-block text-xs font-mono text-indigo-400 tracking-widest uppercase">// Core Cases — STAR Format</div>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Executable Evidence, Not Promises</h2>
+          <p class="text-zinc-400 max-w-xl mx-auto">Three transformations documented in <span class="text-zinc-200 font-medium">STAR</span> format: Situation, Task, Action, Result.</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-3 reveal" id="case-selector"></div>
+        <div id="case-card" class="reveal reveal-d1 bg-zinc-900/30 border border-zinc-800/80 rounded-3xl p-8 sm:p-10 relative overflow-hidden transition-all duration-500"></div>
+      </div>
+    </section>
+
+    <!-- ═══ METHOD BRAIN ═══ -->
+    <section id="method" class="py-24 px-6 bg-zinc-950 border-t border-zinc-900 relative">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-6 space-y-6 reveal-left">
+          <div class="inline-block text-xs font-mono text-purple-400 tracking-widest uppercase">// Work Architecture &amp; Governance</div>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">A tested system, not improvisation.</h2>
+          <p class="text-zinc-400 leading-relaxed text-base sm:text-lg">
+            My work applies project management practices, with strict governance and <span class="text-indigo-400">human-in-the-loop</span> as a core principle. In the AI-assisted consulting application I developed, the architecture organizes <span class="text-zinc-200 font-semibold">12 specialized agents</span> with explicit territories and stated prohibitions; this architecture belongs to the application, not to the method used in all my projects.
+          </p>
+          <ul class="space-y-3 text-sm text-zinc-300 font-mono">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span> No irreversible action without explicit human approval</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-500"></span> Each agent with a clear territory and non-negotiable prohibitions</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-pink-500"></span> Mandatory cross-audit before any final proposal</li>
+          </ul>
+          <div class="pt-4">
+            <a href="/en/manual.en.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-purple-600/20 border border-purple-500/40 hover:bg-purple-600/30 text-purple-300 font-medium transition-all">
+              Audit Full Method Manual (Vercel) <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 bg-zinc-900/40 border border-zinc-800/80 rounded-3xl p-8 backdrop-blur-md relative overflow-hidden reveal-right">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
+          <h3 class="text-xl font-semibold text-white mb-4">6-Stage Pipeline</h3>
+          <div class="space-y-4 font-mono text-xs">
+            <div class="p-4 rounded-xl bg-zinc-950/80 border border-zinc-800 flex items-center justify-between"><span class="text-zinc-400">Stage 0</span><span class="text-zinc-300">Ingestion &amp; Radiography (input normalisation)</span></div>
+            <div class="p-4 rounded-xl bg-zinc-950/80 border border-zinc-800 flex items-center justify-between"><span class="text-indigo-400">Wave 1 · Parallel</span><span class="text-zinc-300">PM + UX + Innovation Strategist</span></div>
+            <div class="p-4 rounded-xl bg-zinc-950/80 border border-zinc-800 flex items-center justify-between"><span class="text-purple-400">Wave 2 · Parallel</span><span class="text-zinc-300">BA + AI Engineer + Data Scientist</span></div>
+            <div class="p-4 rounded-xl bg-zinc-950/80 border border-zinc-800 flex items-center justify-between"><span class="text-pink-400">Wave 3</span><span class="text-zinc-300">PMO · Governance and monitoring · International standards</span></div>
+            <div class="p-4 rounded-xl bg-zinc-950/80 border border-zinc-800 flex items-center justify-between"><span class="text-amber-400">Wave 4</span><span class="text-zinc-300">The Challenger · Cross-Audit</span></div>
+            <div class="p-4 rounded-xl bg-zinc-950/80 border border-zinc-800 flex items-center justify-between"><span class="text-emerald-400">Wave 5 · Parallel</span><span class="text-zinc-300">Proposal + Public Proposal + Lessons</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ TIMELINE ═══ -->
+    <section id="timeline" class="py-24 px-6 bg-zinc-950 border-t border-zinc-900">
+      <div class="max-w-4xl mx-auto space-y-16">
+        <div class="space-y-4 text-center reveal">
+          <div class="inline-block text-xs font-mono text-indigo-400 tracking-widest uppercase">// Corporate Track Record</div>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Operational Track Record &amp; Leadership</h2>
+          <p class="text-zinc-400 max-w-xl mx-auto">A decade of experience leading multidisciplinary teams and complex transformations in international environments.</p>
+        </div>
+        <div id="timeline-list" class="relative border-l border-zinc-800 ml-4 lg:ml-40 space-y-12"></div>
+
+        <!-- STAR Stories -->
+        <div class="space-y-8 pt-12">
+          <div class="space-y-2 text-center reveal">
+            <div class="inline-block text-xs font-mono text-purple-400 tracking-widest uppercase">// STAR Stories — Foundational Experiences</div>
+            <h3 class="text-2xl font-bold tracking-tight text-white">International Roots</h3>
+            <p class="text-zinc-500 text-sm max-w-md mx-auto">Foundational experiences that shaped global operating capability. Documented in STAR format.</p>
+          </div>
+          <div class="flex flex-wrap justify-center gap-3 reveal" id="star-selector"></div>
+          <div id="star-card" class="reveal reveal-d1 bg-zinc-900/30 border border-zinc-800/80 rounded-3xl p-8 sm:p-10 relative overflow-hidden transition-all duration-500"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ REFERENCES WALL ═══ -->
+    <section id="refs" class="py-24 px-6 bg-zinc-950 border-t border-zinc-900">
+      <div class="max-w-6xl mx-auto space-y-16">
+        <div class="space-y-4 text-center reveal">
+          <div class="inline-block text-xs font-mono text-emerald-400 tracking-widest uppercase">// Human Validation &amp; Leadership</div>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Professional references</h2>
+          <p class="text-zinc-400 max-w-xl mx-auto">Direct testimonials from leaders and colleagues I have worked with in demanding environments.</p>
+        </div>
+        <div id="refs-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
+      </div>
+    </section>
+
+    <!-- ═══ AUDIT VAULT ═══ -->
+    <section id="audit" class="py-24 px-6 bg-zinc-950 border-t border-zinc-900">
+      <div class="max-w-4xl mx-auto space-y-12">
+        <div class="space-y-4 text-center reveal">
+          <div class="inline-block text-xs font-mono text-purple-400 tracking-widest uppercase">// Credentials Vault</div>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Training</h2>
+          <p class="text-zinc-400 max-w-xl mx-auto text-sm">31 completed training programs and 3 in progress, out of 34 in total. 23 official. Auditable data, not promises.</p>
+        </div>
+
+        <div class="reveal reveal-d2 text-center">
+          <a href="/en/certificaciones.en.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-all shadow-lg shadow-indigo-600/20">
+            View Full Training Portfolio <span class="text-indigo-200">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="py-16 px-6 bg-zinc-950 border-t border-zinc-900">
+      <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+          <span class="text-sm font-semibold tracking-tight text-white">MAS<span class="text-indigo-400">F</span></span>
+          <span class="text-xs text-zinc-600 font-mono">© 2026</span>
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="https://www.linkedin.com/in/maria-agustina-sanguinetti-flores" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-zinc-500 hover:text-white transition-colors">LinkedIn</a>
+          <a href="/en/manual.en.html" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-zinc-500 hover:text-white transition-colors">Method Manual</a>
+          <a href="/en/certificaciones.en.html" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-zinc-500 hover:text-white transition-colors">Training</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ═══════════════════════════════════════════
+       THREE.JS — 5,000 PARTICLE NETWORK
+       ═══════════════════════════════════════════ -->
+  <script type="module">
+    import * as THREE from 'three';
+
+    const canvas = document.getElementById('hero-canvas');
+    const hero = document.getElementById('hero');
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(hero.clientWidth, hero.clientHeight);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, hero.clientWidth / hero.clientHeight, 0.1, 100);
+    camera.position.z = 18;
+
+    const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+    canvas.addEventListener('mousemove', (e) => {
+      const r = canvas.getBoundingClientRect();
+      mouse.tx = ((e.clientX - r.left) / r.width) * 2 - 1;
+      mouse.ty = -((e.clientY - r.top) / r.height) * 2 + 1;
+    });
+    canvas.addEventListener('mouseleave', () => { mouse.tx = 0; mouse.ty = 0; });
+
+    const NODE = 300, DUST = 4700, TOTAL = NODE + DUST;
+    const MAX_LINES = 1800, CONN_DIST = 3.2, M_RADIUS = 5.5;
+
+    const PALETTE = [
+      new THREE.Color('#6366f1'), new THREE.Color('#8b5cf6'),
+      new THREE.Color('#a855f7'), new THREE.Color('#4f46e5'),
+      new THREE.Color('#7c3aed'),
+    ];
+
+    const pos = new Float32Array(TOTAL * 3);
+    const vel = new Float32Array(TOTAL * 3);
+    const col = new Float32Array(TOTAL * 3);
+
+    for (let i = 0; i < TOTAL; i++) {
+      const i3 = i * 3;
+      const s = i < NODE ? 1 : 1.8;
+      pos[i3] = (Math.random() - 0.5) * 26 * s;
+      pos[i3+1] = (Math.random() - 0.5) * 15 * s;
+      pos[i3+2] = (Math.random() - 0.5) * 10 - 2;
+      vel[i3] = (Math.random() - 0.5) * 0.009;
+      vel[i3+1] = (Math.random() - 0.5) * 0.009;
+      vel[i3+2] = (Math.random() - 0.5) * 0.004;
+      const c = PALETTE[Math.floor(Math.random() * PALETTE.length)];
+      const a = i < NODE ? 1 : 0.25;
+      col[i3] = c.r * a; col[i3+1] = c.g * a; col[i3+2] = c.b * a;
+    }
+
+    const pGeo = new THREE.BufferGeometry();
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    pGeo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+
+    const gc = document.createElement('canvas'); gc.width = 64; gc.height = 64;
+    const gctx = gc.getContext('2d');
+    const grad = gctx.createRadialGradient(32,32,0,32,32,32);
+    grad.addColorStop(0,'rgba(255,255,255,1)');
+    grad.addColorStop(0.15,'rgba(255,255,255,0.8)');
+    grad.addColorStop(0.5,'rgba(255,255,255,0.15)');
+    grad.addColorStop(1,'rgba(255,255,255,0)');
+    gctx.fillStyle = grad; gctx.fillRect(0,0,64,64);
+    const glowTex = new THREE.CanvasTexture(gc);
+
+    const points = new THREE.Points(pGeo, new THREE.PointsMaterial({
+      size: 0.18, map: glowTex, vertexColors: true, transparent: true,
+      opacity: 0.8, blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true,
+    }));
+    scene.add(points);
+
+    const lp = new Float32Array(MAX_LINES * 6);
+    const lc = new Float32Array(MAX_LINES * 6);
+    const lGeo = new THREE.BufferGeometry();
+    lGeo.setAttribute('position', new THREE.BufferAttribute(lp, 3));
+    lGeo.setAttribute('color', new THREE.BufferAttribute(lc, 3));
+    lGeo.setDrawRange(0, 0);
+
+    const lines = new THREE.LineSegments(lGeo, new THREE.LineBasicMaterial({
+      vertexColors: true, transparent: true, opacity: 0.3,
+      blending: THREE.AdditiveBlending, depthWrite: false,
+    }));
+    scene.add(lines);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      mouse.x += (mouse.tx - mouse.x) * 0.05;
+      mouse.y += (mouse.ty - mouse.y) * 0.05;
+      const mx = mouse.x * 13, my = mouse.y * 7.5;
+      const t = performance.now() * 0.001;
+
+      const pa = pGeo.attributes.position.array;
+      for (let i = 0; i < TOTAL; i++) {
+        const i3 = i * 3;
+        pa[i3] += vel[i3]; pa[i3+1] += vel[i3+1]; pa[i3+2] += vel[i3+2];
+        if (i < NODE) {
+          pa[i3] += Math.sin(t*0.3 + i*0.1) * 0.0015;
+          pa[i3+1] += Math.cos(t*0.3 + i*0.13) * 0.0015;
+        }
+        const b = i < NODE ? 13 : 24;
+        if (Math.abs(pa[i3]) > b) vel[i3] *= -1;
+        if (Math.abs(pa[i3+1]) > b*0.58) vel[i3+1] *= -1;
+        if (Math.abs(pa[i3+2]+2) > 5) vel[i3+2] *= -1;
+        if (i < NODE) {
+          const dx = pa[i3]-mx, dy = pa[i3+1]-my;
+          const d = Math.sqrt(dx*dx+dy*dy);
+          if (d < M_RADIUS && d > 0.01) {
+            const f = ((M_RADIUS-d)/M_RADIUS)*0.018;
+            pa[i3] += (dx/d)*f; pa[i3+1] += (dy/d)*f;
+          }
+        }
+      }
+      pGeo.attributes.position.needsUpdate = true;
+
+      let li = 0;
+      for (let i = 0; i < NODE && li < MAX_LINES; i++) {
+        for (let j = i+1; j < NODE && li < MAX_LINES; j++) {
+          const dx = pa[i*3]-pa[j*3], dy = pa[i*3+1]-pa[j*3+1], dz = pa[i*3+2]-pa[j*3+2];
+          const d = Math.sqrt(dx*dx+dy*dy+dz*dz);
+          if (d < CONN_DIST) {
+            const al = 1 - d/CONN_DIST, l6 = li*6;
+            lp[l6]=pa[i*3]; lp[l6+1]=pa[i*3+1]; lp[l6+2]=pa[i*3+2];
+            lp[l6+3]=pa[j*3]; lp[l6+4]=pa[j*3+1]; lp[l6+5]=pa[j*3+2];
+            lc[l6]=col[i*3]*al; lc[l6+1]=col[i*3+1]*al; lc[l6+2]=col[i*3+2]*al;
+            lc[l6+3]=col[j*3]*al; lc[l6+4]=col[j*3+1]*al; lc[l6+5]=col[j*3+2]*al;
+            li++;
+          }
+        }
+      }
+      lGeo.setDrawRange(0, li*2);
+      lGeo.attributes.position.needsUpdate = true;
+      lGeo.attributes.color.needsUpdate = true;
+
+      camera.position.x += (mouse.x*1.5 - camera.position.x)*0.02;
+      camera.position.y += (mouse.y*0.8 - camera.position.y)*0.02;
+      camera.lookAt(0,0,0);
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      const w = hero.clientWidth, h = hero.clientHeight;
+      camera.aspect = w/h; camera.updateProjectionMatrix(); renderer.setSize(w,h);
+    });
+  </script>
+
+  <!-- ═══════════════════════════════════════════
+       DATA & INTERACTIVITY
+       ═══════════════════════════════════════════ -->
+  <script>
+    /* ── DATA: cases ── */
+    const CASES = [
+      {
+        id:"case-ia-transform", number:"01", title:"AI-Assisted Diagnosis and Transformation",
+        subtitle:"From fragmented information to a coherent, traceable transformation proposal.",
+        situation:"In consulting projects, the initial diagnosis often brought together documents, meeting notes and requirements that did not always provide a clear view of the underlying problem. Business, technology and people were assessed separately, while some proposals moved forward on assumptions that still needed to be validated.\n\nThe challenge was not to produce more documentation, but to connect those perspectives and distinguish what was known, what was estimated and what required validation. Without that separation, diagnostic uncertainty could carry into delivery as scope changes, friction or cost overruns.",
+        task:"As the transformation lead and Senior Project Manager, I led the conceptualisation, development and evolution of an AI-assisted consulting application.\n\nThe goal was to turn unstructured material into an operational diagnosis, an intervention proposal and a governance framework. It also needed to support different consulting approaches without losing consistency in the analysis.",
+        action:"I designed a 39-cell matrix to connect processes, architecture, data, people and project management. On that basis, I structured the application around 12 specialized agents that assess the same case from complementary perspectives.\n\nThe central design decision was to build in challenge, not only content generation. I introduced an independent review to identify contradictions across scope, budget and architecture, together with a classification system that distinguishes facts, estimates and critical information gaps.\n\nI also incorporated a technology-maturity assessment to avoid unnecessarily complex solutions and separated internal deliverables from the executive proposal: the former explore risks and outstanding questions in depth; the latter organizes the engagement into diagnosis, validation and scaling.\n\nThrough its use in different consulting contexts, I adapted the application to different ways of working and analysis needs.",
+        result:"The application became a functional AI-assisted consulting solution, delivered to five consulting firms and used in projects across three markets. Due to confidentiality agreements, the organizations and individual cases are not identified.\n\nIt structures strategic analysis and requirements intake through a 39-cell matrix and an architecture of 12 specialized agents. Within my workflow, it reduced the preparation of an initial operational diagnosis from 4 hours to 5 minutes and contributed to a 20% improvement in PMO process efficiency.\n\nIt brings together technical analysis, business, change management and governance in one workflow, with exportable deliverables and assumptions or outstanding questions visible from the outset."
+      },
+      {
+        id:"case-erp", number:"02", title:"ERP Implementation Preparation",
+        subtitle:"Connecting the operation before moving it into a new system.",
+        situation:"An industrial distribution business managed sales, purchasing, inventory and dispatch through isolated spreadsheets, emails and standalone accounting software.\n\nThis fragmented setup created three operational problems: limited visibility of available and reserved stock; misalignment between sales orders and purchasing or production planning; and no continuous way to track an order from sale through delivery and invoicing.\n\nAs a result, warehouse order preparation lacked end-to-end traceability, contributing to recurring inventory discrepancies and service delays. The ERP challenge was therefore to agree and standardise the operating process before transferring it into the system.",
+        task:"As ERP Project Manager, I was responsible for designing, configuring and validating an integrated solution in a test environment using Odoo Community deployed with Docker.\n\nMy responsibility was to connect the order-to-cash, procure-to-pay, and production-and-inventory cycles; apply a fit-to-standard approach that limited non-essential custom development; prepare master-data test loads; and define the logistics indicators that would be used to assess performance after a future production go-live.",
+        action:"I began by formalizing the scope in a Project Charter and mapping the AS-IS and TO-BE processes. I used a Fit/Gap matrix to make decisions under a standard-first approach, addressing requirements through native Odoo Community functionality.\n\nI explicitly excluded advanced carrier integrations, dedicated PDA scanning applications and automated route optimization from scope, as these would require Odoo Enterprise, additional extensions or custom development.\n\nI deployed an isolated test environment using Odoo Community and PostgreSQL on Docker. I configured Inventory, Sales, Purchase, Manufacturing and Invoicing, including physical locations, storage zones, replenishment rules and bills of materials.\n\nI structured the migration through CSV test loads for customers, suppliers, product catalogues and opening stock balances. I logged import errors and their causes to establish data-cleaning rules and a repeatable procedure.\n\nI then configured and tested receiving, stock reservation when confirming sales orders, standard delivery-order generation and invoicing. I designed acceptance tests around realistic scenarios—standard orders, urgent orders, partial deliveries and returns—logged defects, coordinated their correction and performed the relevant retests.\n\nTo prepare for a future production go-live, I developed a checklist covering opening-stock validation, key-user training and operational contingency procedures.",
+        result:"The continuity and integration of the order-to-cash, procure-to-pay, and production-and-inventory cycles were validated in the test environment, with traceability from quotation through to invoicing.\n\nInventory movements—including receipts, internal transfers and deliveries—were recorded in Odoo Community with location, user and timestamp, allowing the flow to be audited and potential bottlenecks to be identified.\n\nThe project remains in validation and simulation; production go-live has not yet taken place. The following post-go-live targets were defined:\n\n• OTIF: increase from the measured starting value of 75% to a target of 90–93% within 90 days of go-live.\n• Inventory accuracy: increase from 85% to a target of 96–98% within 60 days, with expected discrepancies of 2–4%.\n• Order cycle time: reduce the average from 72 hours to a target of 18–24 hours.\n\nThe resulting deliverables include the Project Charter, AS-IS and TO-BE documentation, Fit/Gap matrix, master-data test records, acceptance-test defect matrix, target KPI definitions and go-live readiness checklist."
+      },
+      {
+        id:"case-investigacion-ia", number:"03", title:"Coordinating AI Research",
+        subtitle:"Turning distributed knowledge into a project with shared priorities and deliverables.",
+        situation:"An academic initiative on digital governance and artificial intelligence was being delivered remotely across several research streams, with knowledge distributed among researchers, students and other contributors.\n\nSources, progress updates and decisions were spread across documents and conversations. Although there was active work underway, there was no shared structure for prioritizing tasks, identifying dependencies or consolidating evidence. This created friction and made it difficult to turn individual contributions into collective outputs.",
+        task:"In a Project Management role and in collaboration with the academic leadership, I took responsibility for the project’s operational organization.\n\nMy role was to translate research objectives into an executable plan, coordinate the workflow and help turn progress into deliverables that could support public-policy analysis. I needed to introduce clarity and follow-through without limiting researchers’ autonomy or judgment.",
+        action:"I designed an agile management model with a prioritized backlog, daily objectives and defined owners. I established a follow-up rhythm to review progress, identify blockers and connect every task to the deliverable it supported.\n\nI implemented an AI-supported workspace to centralise documentation, organize sources and facilitate information synthesis. Technology supported the process, while analysis and interpretation remained the responsibility of the team.\n\nI also coordinated communication across roles and research streams. When recurring blockers emerged, I translated them into concrete actions: clarify priorities, resolve dependencies or specify the expected outcome.\n\nTo support traceability, I introduced three progress indicators: overall progress, objective completion and delivery time.",
+        result:"The structure improved coordination across the team and increased visibility of the status of each research stream. Tasks, owners and blockers no longer depended solely on dispersed conversations; they became part of a shared workflow.\n\nWith more than 30 people coordinated, delivery times were reduced by 25% and objective completion reached 95%.\n\nThe result was a more orderly operation that made it easier to consolidate evidence and turn it into input for strategies and recommendations on public policy and AI governance. My contribution was to connect academic objectives with day-to-day execution, keeping the focus on useful deliverables rather than activity alone."
+      }
+    ];
+
+    /* ── DATA: experience ── */
+    const TIMELINE = [
+      {period:"2025 — Present",role:"Project Manager",company:"Nextgenflow",location:"Valencia, Spain",flag:"🇪🇸",desc:"Leadership of digital transformation, process improvement, automation and AI projects, and project management for clients in Europe, LATAM and the United States, from diagnosis and scope definition through to implementation and validation. Coordination of multidisciplinary teams and stakeholders, with direct involvement in the design and development of solutions. The AI-assisted consulting application was delivered to five consulting firms and tested with clients in different markets.",metrics:["+20% efficiency in PMO processes","AI consulting application","Stakeholders across three continents"]},
+      {period:"March 2024 — February 2025",role:"Researcher & Project Manager",company:"Universidad de Buenos Aires (UBA)",location:"Remote",flag:"🇦🇷",desc:"Remote, voluntary collaboration carried out within the group “Gestión de la tecnología, innovación y conocimiento”. I organized priorities, owners and deliverables using a prioritized backlog, tracked tasks and dependencies, and centralised sources and documentation. AI served as a support for the work, with human responsibility retained for analysis and interpretation.",metrics:["-25% delivery times","95% achievement of objectives","30+ people coordinated"]},
+      {period:"July 2023 — April 2024",role:"Assistant Manager",company:"Voyages Tourism Australia",location:"Yulara, Australia",flag:"🇦🇺",desc:"Management of a team of 24 people, application of Lean practices, Salesforce CRM and compliance with ISO standards under high operational pressure in a remote location.",metrics:["97% customer satisfaction","90% complaints < 24h","-20% workplace incidents"]},
+      {period:"2022 — 2023",role:"Resident Services Coordinator",company:"National Resilience Centre (Accor)",location:"Victoria, Australia",flag:"🇦🇺",desc:"Coordination of emergency accommodation operations in Victoria, initially during the pandemic and later for people affected by floods. I took part in a team initiative to establish a shared information system for the hub: I contributed to defining the process, coordinated the survey of discrepancies and supported adoption. We consolidated operational information in Google Sheets, with an update procedure, defined owners, restricted editing and view access according to need. This included training and coordination with government counterparts.",metrics:["Shared system established for the hub","Owners and permissions defined","Update procedure documented"]},
+      {period:"2017 — 2020",role:"Team Lead — Telecom Infrastructure",company:"Netacom",location:"Buenos Aires, Argentina",flag:"🇦🇷",desc:"As a Netacom employee, I coordinated telecommunications infrastructure projects for the client Claro Argentina and teams of field technicians, implementing agile practices and strict budget control.",metrics:["20 technicians coordinated","+20% individual and team efficiency","-30% administrative time"]},
+      {period:"2011 — 2014",role:"senior account executive",company:"Fidelity Marketing",location:"Buenos Aires, Argentina",flag:"🇦🇷",desc:"Management of corporate accounts and coordination of multi-channel marketing campaigns. First exposure to the management of stakeholders, budgets and deliverables with fixed deadlines.",metrics:["End-to-end campaigns with 20–30 participating brands","Coordination of design and development teams in Argentina and Mexico","Agreements negotiated to reduce the bank's financial contribution"]}
+    ];
+
+    /* ── DATA: star-stories ── */
+    const STAR_STORIES = [
+      {
+        id:"star-uk", title:"Communication and resource mobilisation",
+        location:"England & Scotland", country:"United Kingdom", flag:"🇬🇧", period:"2008",
+        situation:"An organization running projects in Africa and Asia needed to mobilise resources and support from the United Kingdom. To do so, it combined communication activities with physical collection spaces in England and Scotland.\n\nThe challenge was to connect the two: to give the initiatives visibility and make it easier for that interest to turn into contributions. Communication, the management of drop-off points and the search for sponsors were parts of a single effort to sustain the international projects.",
+        task:"My responsibility was to implement communication strategies in traditional and digital media, together with the coordination and administration of the spaces set up for collecting resources.\n\nThe work also included expanding the network of drop-off points and seeking sponsors for the international initiatives. I had to combine promoting the projects with the practical management of the channels through which contributions arrived.",
+        action:"I implemented communication activities in traditional and digital media to raise awareness of the projects and support resource mobilisation. This work linked the promotion of the initiatives with the opportunities to collaborate that the organization offered.\n\nIn parallel, I coordinated and administered physical collection spaces in England and Scotland, helping to organize how they ran and to improve operations. I took part in opening three new drop-off points, expanding the organization's presence and the options available for making contributions.\n\nI complemented these activities by seeking and managing sponsors for the international projects. My role thus combined communication, operational coordination and the development of supportive relationships, connecting local work with the initiatives under way in Africa and Asia.",
+        result:"The opening of three new drop-off points expanded the collection network and contributed to an increase in the organization's donations and income.\n\nThe management of the spaces, the communication activities and the search for sponsors strengthened several channels for mobilising resources. My contribution was to work both on the visibility of the projects and on the operations needed to turn the support received into tangible contributions."
+      },
+      {
+        id:"star-mozambique", title:"Community Development in Mozambique",
+        location:"Bilibiza, Mozambique", country:"Mozambique", flag:"🇲🇿", period:"2009",
+        situation:"Communities in Bilibiza needed community programs in education, health and violence prevention.",
+        task:"To develop community programs adapted to the local context, including an early childhood school and the training of community leaders and future educators.",
+        action:"I developed community programs in education, health and violence prevention. I created an early childhood school for 40 children and managed its funding and the hiring of three teachers. I also trained more than 40 community leaders and future educators.",
+        result:"An early childhood school for 40 children was created and brought into operation, with its funding managed and three teachers hired. More than 40 community leaders and future educators received training."
+      },
+      {
+        id:"star-argentina", title:"End-to-end management of campaigns and benefits",
+        location:"Buenos Aires", country:"Argentina", flag:"🇦🇷", period:"2011 — 2014",
+        situation:"A bank ran between five and six commercial campaigns a year, plus additional initiatives, for its general brand and its exclusive benefits segment. Each campaign required aligning numerous participating brands and turning commercial agreements into consistent execution.\n\nFor activities tied to dates such as Father's Day, a one-weekend activation window meant negotiating with approximately 20–30 brands and coordinating contracts, design and programming. The challenge was to reach the committed date with the agreed terms in place and every component ready.",
+        task:"As a senior account executive, I managed the campaigns from start to finish over two and a half years. My responsibility covered the relationship with the bank, the negotiation and formalization of agreements with the brands, and the coordination of the teams needed for launch.\n\nBesides ensuring execution, I sought to improve the client's financial terms: to keep the benefit offered to the consumer while reducing, where the negotiation allowed, the share funded by the bank.",
+        action:"For each campaign, I contacted the participating brands, negotiated their contribution and formalized the contracts on the bank's behalf. I did not treat each agreement in isolation: I had to achieve a combination of participants and terms that would make the commercial proposal executable.\n\nIn the negotiations, I sought to shift part of the funding of the benefit toward the brands. Where the initial scheme envisioned an even split between the two parties, I tried to reduce the bank's share, adjusting the negotiation to the needs of each campaign.\n\nI then coordinated implementation with the design teams in Argentina and the programming teams in Mexico, together with the other areas involved. I kept a spreadsheet and specific tracking for each campaign to monitor progress, open items and dates, connecting the commercial commitments with the work needed to meet them.",
+        result:"During my time there, as I recall the period, the campaigns were delivered on time and as agreed, except for one whose commercial proposal was not viable.\n\nI managed campaigns with approximately 20–30 brands each, combining contract negotiation and international coordination. The work also helped improve the bank's funding terms in various agreements. My usual target was to reduce its contribution by around five percentage points, although the actual improvement varied by campaign and brand.\n\nMy contribution was to hold end-to-end responsibility: from negotiating the benefit to coordinating its launch, without separating the commercial promise from its operational feasibility."
+      },
+      {
+        id:"star-nz", title:"Environmental engagement campaigns",
+        location:"Bay of Plenty", country:"New Zealand", flag:"🇳🇿", period:"2015",
+        situation:"An environmental organization ran community campaigns to bring its initiatives closer to the public and build support. People's participation and donations are a central part of the organization's model.\n\nIn the field, the challenge was to connect with diverse audiences: it was not enough to distribute information; the causes had to be explained in an accessible way, and interest had to be turned into participation.",
+        task:"As an Outreach Campaigner, my responsibility was to carry out environmental awareness activities, organize public engagement events and recruit new donors and members.\n\nThe aim was to combine outreach and mobilisation: to give the initiatives visibility, generate conversations with the community and secure concrete support to sustain the organization's work.",
+        action:"I carried out outreach activities through direct contact with people from different backgrounds. I explained the environmental initiatives and the ways to get involved, working on the communication so as to connect the campaign message with the public's concerns.\n\nI organized public engagement events and helped sustain activity in the field. This work combined preparing the activities with direct interaction while they took place.\n\nI also produced and distributed informational materials on environmental awareness to support the conversations and bring the campaign content closer to the community.\n\nDonor recruitment was part of that same process: I linked the explanation of the initiatives to a concrete invitation to get involved, aiming to ensure that outreach did not stop at knowledge or interest alone.",
+        result:"The outreach activities led to the recruitment of 37 new donors, turning contact with the community into concrete support for the organization.\n\nIn addition, the events and informational materials widened the opportunities to bring the campaigns closer to the public. My contribution combined communication, organization and mobilisation in the field, with a tangible recruitment result and experience of working with diverse audiences."
+      },
+      {
+        id:"star-australia", title:"Data governance in a residential operation",
+        location:"Melbourne, Victoria", country:"Australia", flag:"🇦🇺", period:"2022",
+        situation:"In an emergency residential operation run by a hospitality company together with a public authority, different teams shared the information needed to care for residents. The service began in the context of the pandemic and later also supported people affected by floods.\n\nThe operation involved resident services, government representatives and health providers. Although several systems existed, the information showed discrepancies on arrivals, departures, dietary needs and conditions relevant to care. These errors did not just hinder the service: they could compromise its suitability and lead to financial penalties for the operating company.",
+        task:"As a resident services coordinator, I took part in a team initiative to establish a shared and reliable information base.\n\nMy responsibility was to help define the process, coordinate the groups involved and gather recurring problems from stakeholders. We needed to correct the existing data and, at the same time, prevent discrepancies from being reintroduced during day-to-day operations.",
+        action:"We began by cross-checking the information on the residents present in the hub where I worked, in order to identify discrepancies and build a cleansed baseline. Through conversations with the teams involved, I identified which errors kept recurring and how they affected service delivery.\n\nWe consolidated operational information in Google Sheets and defined how it should be updated when residents arrived, left or their care needs changed. We supported the process with training so that staff applied common criteria.\n\nThe most important decision was to separate access to the information from the ability to modify it. We restricted editing to the team responsible for the data and gave view access to the counterparts who needed it.\n\nThis change required conversations with senior government officials. I explained the discrepancies found and the need for information sharing not to dilute responsibility for keeping it up to date.",
+        result:"For the hub where I worked, a shared information system, an update procedure and defined owners to maintain the information were established. The different teams could consult the data they needed without making changes outside the agreed process.\n\nAdoption required support, but it made it possible to bring order to the tracking of residents and to establish common recording criteria. The value of the project lay not in the complexity of the tool, but in combining data cleansing, coordination between stakeholders and change control to sustain more consistent care."
+      }
+    ];
+
+    /* ── DATA: references ── */
+    const REFERENCES = [
+      {quote:"I met María Agustina at Fidelity, where we worked together on various campaigns for different clients, and specifically for Banco Itaú. She always stood out for her impeccable handling of clients, her ability to coordinate teams and manage multiple deliverables without losing focus on the details. She solves problems with creativity and calm when last-minute changes arise, and her organization guarantees that projects are delivered on time and with quality. I recommend Agus without hesitation for project lead management.",author:"Daniela Soledad Pereyra",role:"Marketing Coordinator",company:"Fidelity Marketing",linkedin:"https://www.linkedin.com/in/daniela-soledad-pereyra"},
+      {quote:"I had the pleasure of working with María and can say with confidence that she is an exceptional professional, with a natural strength for project coordination and delivery. She has a fantastic ability to manage concurrent priorities, keep schedules on track and make sure nothing slips through. Her organization, attention to detail and calm approach under pressure made her someone the whole team could rely on, especially when there were multiple deadlines at stake. Beyond her technical skills, María is a great communicator and collaborator. She brings a positive, solutions-oriented mindset, and works smoothly with different stakeholders to keep projects moving. She would be a huge asset to any team, particularly in a remote role where trust, accountability and clear communication are key. I would not hesitate to recommend her.",author:"Jamie-lee Wilson",role:"Operations Director",company:"Voyages Indigenous Tourism",linkedin:"https://www.linkedin.com/in/jamie-lee-wilson"},
+      {quote:"I worked with Agustina at Netacom, where she led the operational coordination of our field technician teams. She managed planning, task allocation and communication with clients across multiple simultaneous projects, always ensuring that deadlines and quality standards were met. Her ability to keep a team of 20 technicians organized and focused, while maintaining clear communication with clients, was truly remarkable. She brought structure and accountability to a very demanding, fast-paced environment. I would recommend Agustina without hesitation for any role involving team coordination, operations management or project delivery.",author:"Marcos Quero",role:"Operations Manager",company:"Netacom",linkedin:"https://www.linkedin.com/in/marcos-quero"},
+      {quote:"I worked alongside Agustina at the National Resilience Centre in Victoria, where we coordinated operations under strict government and biosecurity standards. What stood out most was her ability to stay organized and solutions-oriented in a high-pressure, constantly changing environment — she brought structure and calm to situations that were the opposite. She was always professional, reliable and genuinely committed to doing things right. She contributed to standardising our traceability processes in ways that made the whole team more efficient and consistent. I would recommend Agustina with confidence for any role that requires someone able to handle complexity, maintain high standards under pressure and bring a positive, professional attitude to the team.",author:"Sofia Marchetti",role:"Resilience Operations Manager",company:"National Resilience Centre (Accor)",linkedin:"https://www.linkedin.com/in/sofia-marchetti"}
+    ];
+
+    /* ═══════════════════════════════════════════
+       RENDER FUNCTIONS
+       ═══════════════════════════════════════════ */
+
+    /* ── Core Cases ── */
+    let activeCaseId = CASES[0].id;
+
+    function renderCaseSelector() {
+      const el = document.getElementById('case-selector');
+      el.innerHTML = CASES.map(c =>
+        `<button onclick="selectCase('${c.id}')" class="px-6 py-3 rounded-xl text-sm font-medium transition-all font-mono ${activeCaseId===c.id?'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20':'bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800'}">Case ${c.number}</button>`
+      ).join('');
+    }
+
+    function renderCaseCard() {
+      const c = CASES.find(x => x.id === activeCaseId);
+      const el = document.getElementById('case-card');
+      const starSections = [
+        {label:'S — Situation', color:'text-indigo-400', content:c.situation},
+        {label:'T — Task', color:'text-purple-400', content:c.task},
+        {label:'A — Action', color:'text-pink-400', content:c.action},
+        {label:'R — Result', color:'text-emerald-400', content:c.result}
+      ];
+      el.innerHTML = `
+        <div class="absolute top-0 right-0 w-48 h-48 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="text-xs font-mono text-indigo-400 tracking-widest uppercase mb-3">Case ${c.number}</div>
+        <h3 class="text-2xl font-semibold text-white mb-1">${c.title}</h3>
+        <p class="text-sm text-zinc-400 italic mb-8">${c.subtitle}</p>
+        <div class="space-y-6">
+          ${starSections.map(s => `
+            <div>
+              <div class="text-xs font-mono ${s.color} mb-2 tracking-wider">${s.label}</div>
+              <p class="text-sm text-zinc-300 leading-relaxed whitespace-pre-line">${s.content}</p>
+            </div>
+          `).join('')}
+        </div>`;
+    }
+
+    window.selectCase = function(id) {
+      activeCaseId = id;
+      renderCaseSelector();
+      renderCaseCard();
+    };
+
+    /* ── Timeline ── */
+    function renderTimeline() {
+      const el = document.getElementById('timeline-list');
+      el.innerHTML = TIMELINE.map((item, idx) => `
+        <div class="relative pl-8 lg:pl-10 group reveal" style="transition-delay:${idx*0.05}s">
+          <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-zinc-700 group-hover:bg-indigo-500 transition-colors border-2 border-zinc-950"></div>
+          <div class="lg:absolute lg:right-full lg:mr-4 lg:top-1 lg:w-32 lg:text-right text-xs font-mono text-zinc-500 mb-1 lg:mb-0">${item.period}</div>
+          <div class="bg-zinc-900/40 border border-zinc-800/80 p-6 rounded-2xl space-y-3 hover:border-zinc-700 transition-all">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+              <h3 class="text-lg font-semibold text-white">${item.role} <span class="text-indigo-400 font-normal">@ ${item.company}</span></h3>
+              <span class="text-xs text-zinc-400 font-mono">${item.flag} ${item.location}</span>
+            </div>
+            <p class="text-sm text-zinc-300 leading-relaxed">${item.desc}</p>
+            <div class="flex flex-wrap gap-2 pt-2">
+              ${item.metrics.map(m => `<span class="text-xs font-mono bg-zinc-950/60 border border-zinc-800/80 text-indigo-300 px-2.5 py-1 rounded-md">✓ ${m}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ── STAR Stories ── */
+    let activeStarId = STAR_STORIES[0].id;
+
+    function renderStarSelector() {
+      const el = document.getElementById('star-selector');
+      el.innerHTML = STAR_STORIES.map(s =>
+        `<button onclick="selectStar('${s.id}')" class="px-4 py-2.5 rounded-xl text-xs font-medium transition-all font-mono ${activeStarId===s.id?'bg-purple-600 text-white shadow-lg shadow-purple-600/20':'bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800'}">${s.flag} ${s.country} · ${s.period}</button>`
+      ).join('');
+    }
+
+    function renderStarCard() {
+      const s = STAR_STORIES.find(x => x.id === activeStarId);
+      const el = document.getElementById('star-card');
+      const sections = [
+        {label:'S — Situation', color:'text-indigo-400', content:s.situation},
+        {label:'T — Task', color:'text-purple-400', content:s.task},
+        {label:'A — Action', color:'text-pink-400', content:s.action},
+        {label:'R — Result', color:'text-emerald-400', content:s.result}
+      ];
+      el.innerHTML = `
+        <div class="absolute top-0 right-0 w-48 h-48 bg-purple-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h3 class="text-xl font-semibold text-white">${s.title}</h3>
+            <p class="text-sm text-zinc-500 font-mono mt-1">${s.location} · ${s.flag} ${s.country} · ${s.period}</p>
+          </div>
+        </div>
+        <div class="space-y-6">
+          ${sections.map(sec => `
+            <div>
+              <div class="text-xs font-mono ${sec.color} mb-2 tracking-wider">${sec.label}</div>
+              <p class="text-sm text-zinc-300 leading-relaxed whitespace-pre-line">${sec.content}</p>
+            </div>
+          `).join('')}
+        </div>`;
+    }
+
+    window.selectStar = function(id) {
+      activeStarId = id;
+      renderStarSelector();
+      renderStarCard();
+    };
+
+    /* ── References ── */
+    function renderRefs() {
+      const el = document.getElementById('refs-grid');
+      el.innerHTML = REFERENCES.map((r, idx) => `
+        <div class="reveal bg-zinc-900/30 border border-zinc-800/80 p-8 rounded-3xl flex flex-col justify-between space-y-6 relative group hover:border-zinc-700 transition-all" style="transition-delay:${idx*0.1}s">
+          <div class="text-indigo-400 font-serif text-4xl leading-none">&ldquo;</div>
+          <p class="text-zinc-300 text-sm sm:text-base leading-relaxed italic -mt-4">${r.quote}</p>
+          <div class="flex items-center justify-between border-t border-zinc-800/80 pt-4">
+            <div>
+              <div class="font-semibold text-white text-sm">${r.author}</div>
+              <div class="text-xs text-zinc-400">${r.role} · <span class="text-indigo-300">${r.company}</span></div>
+            </div>
+            <a href="${r.linkedin}" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-indigo-400 hover:text-indigo-300 transition-colors bg-indigo-950/40 border border-indigo-500/30 px-3 py-1.5 rounded-lg">View on LinkedIn →</a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ═══════════════════════════════════════════
+       INIT & OBSERVERS
+       ═══════════════════════════════════════════ */
+
+    renderCaseSelector();
+    renderCaseCard();
+    renderTimeline();
+    renderStarSelector();
+    renderStarCard();
+    renderRefs();
+
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    function observeReveals() {
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObs.observe(el));
+    }
+    observeReveals();
+    setTimeout(observeReveals, 100);
+
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 600) {
+        nav.classList.remove('-translate-y-full');
+        nav.classList.add('translate-y-0');
+      } else {
+        nav.classList.add('-translate-y-full');
+        nav.classList.remove('translate-y-0');
+      }
+    }, { passive: true });
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+
+</body>
+</html>
