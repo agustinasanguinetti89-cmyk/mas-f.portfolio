@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/en/index.en.html",
+      "permanent": false
+    },
+    {
+      "source": "/en",
+      "destination": "/en/index.en.html",
+      "permanent": false
+    },
+    {
+      "source": "/en/",
+      "destination": "/en/index.en.html",
+      "permanent": false
+    },
+    {
+      "source": "/es",
+      "destination": "/es/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/es/",
+      "destination": "/es/index.html",
+      "permanent": false
+    }
+  ]
+}
